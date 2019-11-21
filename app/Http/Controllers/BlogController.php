@@ -20,8 +20,8 @@ class BlogController extends Controller
     }
 
 
-    public function show($id){
-        $posts = Post::findOrFail($id);
+    public function show($slug){
+        $posts = Post::published()->where('slug',$slug)->first();
         return view('blog.show', compact('posts'));
     }
 }

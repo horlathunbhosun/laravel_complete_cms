@@ -12,8 +12,6 @@
                             
                         </div>
                     @endif
-
-
                     <div class="post-item-body">
                         <div class="padding-10">
                             <h1>{{ $posts->title}}</h1>
@@ -26,32 +24,29 @@
                                     <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
                                 </ul> 
                             </div>
-
                             <p>
-
                                 {{$posts->body}}
                             </p>
                         </div>
                     </div>
                 </article>
-
                 <article class="post-author padding-10">
                     <div class="media">
-                      <div class="media-left">
-                        <a href="#">
-                          <img alt="Author 1" src="/img/author.jpg" class="media-object">
-                        </a>
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading"><a href="#">{{ $posts->author->name}}</a></h4>
-                        <div class="post-author-count">
-                          <a href="#">
-                              <i class="fa fa-clone"></i>
-                              90 posts
-                          </a>
+                        <div class="media-left">
+                            <a href="#">
+                            <img alt="Author 1" src="/img/author.jpg" class="media-object">
+                            </a>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ad aut sunt cum, mollitia excepturi neque sint magnam minus aliquam, voluptatem, labore quis praesentium eum quae dolorum temporibus consequuntur! Non.</p>
-                      </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="#">{{ $posts->author->name}}</a></h4>
+                            <div class="post-author-count">
+                            <a href="#">
+                                <i class="fa fa-clone"></i>
+                                90 posts
+                            </a>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ad aut sunt cum, mollitia excepturi neque sint magnam minus aliquam, voluptatem, labore quis praesentium eum quae dolorum temporibus consequuntur! Non.</p>
+                        </div>
                     </div>
                 </article>
 
