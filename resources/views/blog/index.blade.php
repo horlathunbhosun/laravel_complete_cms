@@ -3,25 +3,25 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                @foreach ($post as $posts )
+                @foreach ($posts as $post )
                 <article class="post-item">
-                    @if($posts->imageUrl)
+                    @if($post->imageUrl)
                             <div class="post-item-image">
                                 <a href="post.html">
-                                    <img src="{{$posts->imageUrl}}" alt="">
+                                    <img src="{{$post->image_url}}" alt="">
                                 </a>
                             </div>
                         @endif
                         <div class="post-item-body">
                             <div class="padding-10">
-                                <h2><a href="post.html">{{$posts->title}}</a></h2>
-                                <p>{{$posts->excerpt}}</p>
+                                <h2><a href="post.html">{{$post->title}}</a></h2>
+                                <p>{{$post->excerpt}}</p>
                             </div>
                             <div class="post-meta padding-10 clearfix">
                                 <div class="pull-left">
                                     <ul class="post-meta-group">
-                                        <li><i class="fa fa-user"></i><a href="#"> {{$posts->author->name}}</a></li>
-                                        <li><i class="fa fa-clock-o"></i><time> {{$posts->date}}</time></li>
+                                        <li><i class="fa fa-user"></i><a href="#"> {{$post->author->name}}</a></li>
+                                        <li><i class="fa fa-clock-o"></i><time> {{$post->date}}</time></li>
                                         <li><i class="fa fa-tags"></i><a href="#"> Blog</a></li>
                                         <li><i class="fa fa-comments"></i><a href="#">4 Comments</a></li>
                                     </ul>
@@ -34,10 +34,11 @@
                     </article>
                 @endforeach
                 <nav>
-                    <ul class="pager">
+                    {{-- <ul class="pager">
                     <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Newer</a></li>
                     <li class="next"><a href="#">Older <span aria-hidden="true">&rarr;</span></a></li>
-                    </ul>
+                    </ul> --}}
+                    {{$posts->links()}}
                 </nav>
             </div>
             @include('layouts.sidebar')

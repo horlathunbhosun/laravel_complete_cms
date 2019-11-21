@@ -6,11 +6,16 @@ use App\Post;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
+
 {
+    protected $limit = 3;
     public function index(){
         // \DB::enableQueryLog();
-        $post = Post::with('author')->get();
-            return view('blog.index', compact('post'));
+        $posts = Post::with('author')
+                    ->LastestFirst()
+                    ->published()
+                    ->simplePaginate($this->limit);
+            return view('blog.index', compact('posts'));
         // dd(\DB::getQueryLog());
     }
 }

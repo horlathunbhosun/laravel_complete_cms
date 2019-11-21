@@ -13,6 +13,7 @@
 
 Route::get('/',  [
         'uses' => 'BlogController@index',
+        'as' => 'blog'
 ]);
 
 Route::get('/show', 'PostController@show');
