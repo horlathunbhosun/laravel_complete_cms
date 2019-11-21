@@ -19,8 +19,9 @@ Route::get('/',  [
 Route::get('/show', 'PostController@show');
 
 
-Route::get('/blog/show', function(){
-    return view('blog.show');
-});
+Route::get('/blog/{show}', [
+    'uses' => 'BlogController@show',
+    'as' => 'blog.show'
+]);
 
 

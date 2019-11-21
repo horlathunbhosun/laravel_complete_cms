@@ -14,7 +14,7 @@
                         @endif
                         <div class="post-item-body">
                             <div class="padding-10">
-                                <h2><a href="post.html">{{$post->title}}</a></h2>
+                                <h2><a href="{{route('blog.show', $post->id)}}">{{$post->title}}</a></h2>
                                 <p>{{$post->excerpt}}</p>
                             </div>
                             <div class="post-meta padding-10 clearfix">
@@ -27,7 +27,7 @@
                                     </ul>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="post.html">Continue Reading &raquo;</a>
+                                    <a href="{{route('blog.show', $post->id)}}">Continue Reading &raquo;</a>
                                 </div>
                             </div>
                         </div>
