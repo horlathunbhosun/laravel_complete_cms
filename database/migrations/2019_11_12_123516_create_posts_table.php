@@ -22,6 +22,8 @@ class CreatePostsTable extends Migration
             $table->longText('body');
             $table->string('image')->nullable();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
             $table->timestamps();  
+            $table->bigInteger('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('restrict');
             
             $table->foreign('author_id')->references('id')->on('users')->onDelete('restrict');
         });

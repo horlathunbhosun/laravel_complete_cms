@@ -3,8 +3,10 @@
 namespace App;
 
 use App\User;
+use App\Category;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use GrahamCampbell\Markdown\Facades\Markdown;
 
 class Post extends Model
 {
@@ -12,6 +14,10 @@ class Post extends Model
     //
     public function author(){
         return  $this->belongsTo('App\User');
+    }
+
+    public function category(){
+        return $this->belongsTo('App\Category');
     }
 
 
@@ -36,5 +42,13 @@ class Post extends Model
 
     public function scopeLastestFirst($query){
         return $query->orderBy('created_at', 'desc');
+    }
+
+    public function getBodyHtmlAttribute($value){
+        return $this->body ? Markdown::convertToHtml(e($this->body)) : NULL;
+    }
+
+    public function getExcerptAttribute($value){
+        return $this->excerpt ? Markdown::convertToHtml(e($this->excerpt)) : NULL;
     }
 }
