@@ -6,6 +6,8 @@ use App\Post;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use GrahamCampbell\Markdown\Facades\Markdown;
+
 
 class User extends Authenticatable
 {
@@ -41,6 +43,17 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany('App\Post', 'author_id');
     }
+    public function getBioHtmlAttribute($value){
+        return $this->bio ? Markdown::convertToHtml(e($this->bio)) : NULL;
+    }
+
+    public function gravatar(){
+        $email = $this->email;
+        $default = "https://res.cloudinary.com/horlathunbhosun/image/upload/v1524247081/avatar-user-coder-3579ca3abc3fd60f-512x512.png";
+        $size = 100;
+        return  "https://www.gravatar.com/avatar/" . md5( strtolower(trim( $email ))) . "?d=" . urlencode($default) . "&s=" . $size;
+    }
+
 
     public function getRouteKeyName(){
         return 'slug';
