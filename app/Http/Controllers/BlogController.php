@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use App\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,6 +34,20 @@ class BlogController extends Controller
     
         return view('blog.index', compact('posts',  'categoryName'));
         //   dd(\DB::getQueryLog()); 
+    }
+
+
+    public function author(User $author){
+        // echo 'test';
+
+        $authorName = $author->name;
+
+        $posts = $author->posts()
+                        ->with('category')
+                        ->orderBy('published_at', 'desc')
+                        ->where("published_at", "<=", Carbon::now())
+                        ->simplePaginate($this->limit);
+       return view('blog.index', compact('posts', 'authorName'));
     }
 
     public function show($slug)
