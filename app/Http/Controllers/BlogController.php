@@ -50,8 +50,15 @@ class BlogController extends Controller
        return view('blog.index', compact('posts', 'authorName'));
     }
 
-    public function show($slug)
+    public function show(Post $post, $slug)
     {
+        //update post  set view_count = view_count + 1 where id = ?
+        #1
+
+        // $viewCount = $post->view_count + 1;
+        // $post->update(['view_count' => $viewCount]);
+        // $post->;
+        $post = Post::published()->where('slug',$slug)->increment('view_count', 1);
         $posts = Post::published()->where('slug',$slug)->first();
         return view('blog.show', compact('posts'));
     }

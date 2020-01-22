@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Post;
 use App\Category;
 use Illuminate\Support\ServiceProvider;
+use App\View\Composers\NavigationComposer;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function register()
     {
         //
+//view()->composer('layouts.sidebar', NavigationComposer::class)
         view()->composer('layouts.sidebar', function($view){
             $categories = Category::with(['posts' => function($query){
                 $query->published();
