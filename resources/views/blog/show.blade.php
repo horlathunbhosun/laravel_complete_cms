@@ -18,7 +18,10 @@
 
                             <div class="post-meta no-border">
                                 <?php $author = $posts->author ?>
-                                <ul class="post-meta-group">
+                              {!!
+                                
+                                        $posts->body_html
+                            !!}          <ul class="post-meta-group">
                                     <li><i class="fa fa-user"></i><a href="{{ route('author', $author->slug )}}"> {{ $author->name}}</a></li>
                                     <li><i class="fa fa-clock-o"></i><time>{{ $posts->date}}</time></li>
                                     <li><i class="fa fa-folder"></i><a href="{{ route('category', $posts->category->slug)}}"> {{$posts->category->title}}</a></li>
@@ -26,10 +29,7 @@
                                 </ul> 
                             </div>
                             <p>
-                                        {!!
-                                                    $posts->body_html
-                                        !!}
-                                    
+                               
                             </p>
                         </div>
                     </div>
