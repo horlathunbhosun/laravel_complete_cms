@@ -8,10 +8,11 @@
                 <button class="btn btn-lg btn-default" type="button">
                     <i class="fa fa-search"></i>
                 </button>
-              </span>
+              </span>/femi
             </div>
         </div>
         -->
+
 
         <div class="widget">
             <div class="widget-heading">
@@ -25,8 +26,8 @@
                             <span class="badge pull-right">{{$category->posts->count()}}</span>
                         </li>
                     @endforeach
-                    
-                   
+
+
                 </ul>
             </div>
         </div>
@@ -37,7 +38,7 @@
             </div>
             <div class="widget-body">
                 <ul class="popular-posts">
-                    @foreach ($popularPosts as $post ) 
+                    @foreach ($popularPosts as $post )
                     <li>
                         @if($post->image_thumb_url)
                             <div class="post-image">
