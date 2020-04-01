@@ -14,7 +14,9 @@
         <small>Display all Blog Post</small>
       </h1>
       <ol class="breadcrumb">
-        <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
+        <li><a href="{{ url('/home')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="{{ route('blog.index')}}">Blog</a></li>
+        <li class="active">All Post</li>
       </ol>
     </section>
 
@@ -23,8 +25,20 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="box">
+                <div class="box-header">
+                    <div class="pull-left">
+                        <a href="{{ route('blog.create')}}" class="btn btn-success"> Add New</a>
+                    </div>
+                </div>
+
               <!-- /.box-header -->
+
               <div class="box-body ">
+                @if(! $posts->count())
+                    <div class="alert alert-danger">
+                        <strong>No record found</strong>
+                    </div>
+                 @else
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -59,6 +73,7 @@
                             </tbody>
                         </thead>
                     </table>
+                    @endif
               </div>
               <!-- /.box-body -->
 
@@ -71,7 +86,6 @@
                   </ul>
                 </div>
                 <div class="pull-right">
-                    <?php  $postCount = $posts->count()?>
                     <small>{{ $postCount}} {{ str_plural('item', $postCount)}}</small>
                 </div>
               </div>
@@ -83,4 +97,12 @@
     </section>
     <!-- /.content -->
   </div>
+@endsection
+
+@section('script')
+
+  <script type="text/javascript">
+      $('ul.pagination').addClass('no-margin pagination-sm');
+  </script>
+
 @endsection
