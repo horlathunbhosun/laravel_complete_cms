@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class BlogController extends BackendController
@@ -41,7 +42,32 @@ class BlogController extends BackendController
      */
     public function store(Request $request)
     {
-        //
+            $this->validate($request,[
+                'title'         =>'required',
+                'slug'          =>'required|unique:posts',
+                'body'          =>'required',
+                'category_id'   => 'required',
+                'image'         => 'required'
+            ]);
+
+            $author = Auth::user()->id;
+            $data =  $request->only(['title', 'slug', 'body','excerpt' ,'image', 'published_at', 'category_id', 'author_id']);
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $fileName = $image->getClientOriginalName();
+                $path = public_path('img');
+                $image->move($path, $fileName);
+            }
+            $data['author_id'] = $author;
+            $post = new Post($data);
+            $confirm = $post->save();
+             if($confirm){
+                    toastr()->success('Blog Post Submitted Successfully', 'Success');
+                    return redirect('/backend/blog');
+              }else{
+                    toastr()->error('An error occurred while submitting', 'Error');
+                    return back();
+              }
     }
 
     /**

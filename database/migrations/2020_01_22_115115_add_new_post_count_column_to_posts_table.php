@@ -15,7 +15,7 @@ class AddNewPostCountColumnToPostsTable extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             //
-            $table->integer('view_count');
+            $table->integer('view_count')->default(0)->nullable();
         });
     }
 
@@ -28,9 +28,9 @@ class AddNewPostCountColumnToPostsTable extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             //
-            
+
             $table->dropColumn('view_count');
-            
+
         });
     }
 }

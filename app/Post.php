@@ -10,7 +10,7 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 
 class Post extends Model
 {
-    protected $fillable = ['view_count'];
+    protected $fillable = ['view_count', 'title' , 'slug' , 'author_id' , 'body' , 'image', 'excerpt' , 'category_id' , 'published_at'];
     protected $dates = ['published_at'];
     //
     public function author(){

@@ -42,13 +42,13 @@
                     <li>
                         @if($post->image_thumb_url)
                             <div class="post-image">
-                                <a href="{{ route('blog.show', $post->slug)}}">
+                                <a href="{{ route('frontend.blog.show', $post->slug)}}">
                                     <img src="{{ $post->image_thumb_url }}" />
                                 </a>
                             </div>
                         @endif
                         <div class="post-body">
-                            <h6><a href="{{ route('blog.show', $post->slug)}}">{{ $post->title}}</a></h6>
+                            <h6><a href="{{ route('frontend.blog.show', $post->slug)}}">{{ $post->title}}</a></h6>
                             <div class="post-meta">
                                 <span>{{$post->date}}</span>
                             </div>

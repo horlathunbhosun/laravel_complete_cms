@@ -21,7 +21,7 @@ Route::get('/show', 'PostController@show');
 
 Route::get('/blog/{slug}', [
     'uses' => 'BlogController@show',
-    'as' => 'blog.show'
+    'as' => 'frontend.blog.show'
 ]);
 
 Route::get('/category/{category}', [
