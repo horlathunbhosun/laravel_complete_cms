@@ -44,13 +44,13 @@
                             @enderror
                         </div>
 
-                        <div class="form-group @error('slug') is-invalid  @enderror ">
+                        {{--  <div class="form-group @error('slug') is-invalid  @enderror ">
                             {!! Form::label('slug') !!}
                             {!! Form::text('slug', null, ['class'=>'form-control', 'placeholder'=>'Enter The Slug']) !!}
                             @error('slug')
                                 <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                              @enderror
-                        </div>
+                        </div>  --}}
 
                         <div class="form-group @error('excerpt') is-invalid @enderror">
                             {!! Form::label('excerpt') !!}
@@ -108,4 +108,14 @@
     <!-- /.content -->
   </div>
 @endsection
+
+@section('script')
+
+  <script type="text/javascript">
+      $('ul.pagination').addClass('no-margin pagination-sm');
+
+  </script>
+
+@endsection
+
 

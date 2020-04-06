@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use config;
 use App\Post;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 
 class BlogController extends BackendController
@@ -44,7 +47,7 @@ class BlogController extends BackendController
     {
             $this->validate($request,[
                 'title'         =>'required',
-                'slug'          =>'required|unique:posts',
+               // 'slug'          =>'required|unique:posts',
                 'body'          =>'required',
                 'category_id'   => 'required',
                 'image'         => 'required'
@@ -52,13 +55,30 @@ class BlogController extends BackendController
 
             $author = Auth::user()->id;
             $data =  $request->only(['title', 'slug', 'body','excerpt' ,'image', 'published_at', 'category_id', 'author_id']);
-            if($request->hasFile('image')){
-                $image = $request->file('image');
-                $fileName = $image->getClientOriginalName();
-                $path = public_path('img');
-                $image->move($path, $fileName);
-            }
+                if($request->hasFile('image')){
+                $file = $request->file('image');
+                $fileName = $file->getClientOriginalName();
+                $path = public_path('/img');
+                $success =  $file->move($path, $fileName);
+
+                if($success){
+                    $width = config('cms.image.thumbnail.width');
+                    $height = config('cms.image.thumbnail.height');
+                    $extension = $file->getClientOriginalExtension();
+                    $thumbnail =   str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
+                    $path = public_path('/img');
+                    Image::make($path . '/' . $fileName)
+                        ->resize($width,$height)
+                        ->save($path . '/' . $thumbnail);
+                    }
+                }
+
+            $title = $request->title;
+            $slug = str_slug($title, '-');
+            $data['slug'] = $slug;
             $data['author_id'] = $author;
+           // $data['image'] =
+            // dd($data);
             $post = new Post($data);
             $confirm = $post->save();
              if($confirm){

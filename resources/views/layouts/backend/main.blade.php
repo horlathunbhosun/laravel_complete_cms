@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/backend/css/skins/_all-skins.min.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="/backend/plugins/simplemde/simplemde.min.css">
   @toastr_css
 </head>
 
@@ -56,6 +57,7 @@
 <script src="/backend/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/backend/js/app.min.js"></script>
+<script src="/backend/plugins/simplemde/simplemde.min.js"></script>
 @yield('script')
 </body>
 </html>
