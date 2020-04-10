@@ -19,7 +19,11 @@
   <link rel="stylesheet" href="/backend/css/skins/_all-skins.min.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <link rel="stylesheet" href="/backend/plugins/jasny-bootstrap/css/jasny-bootstrap.min.css">
+
   <link rel="stylesheet" href="/backend/plugins/simplemde/simplemde.min.css">
+  <link rel="stylesheet" href="/backend/css/custom.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
   @toastr_css
 </head>
 
@@ -57,7 +61,10 @@
 <script src="/backend/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/backend/js/app.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script src="/backend/plugins/simplemde/simplemde.min.js"></script>
+<script src="/backend/plugins/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
 @yield('script')
 </body>
 </html>

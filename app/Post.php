@@ -7,9 +7,11 @@ use App\Category;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
     protected $fillable = ['view_count', 'title' , 'slug' , 'author_id' , 'body' , 'image', 'excerpt' , 'category_id' , 'published_at'];
     protected $dates = ['published_at'];
     //
@@ -66,9 +68,9 @@ class Post extends Model
         return $this->body ? Markdown::convertToHtml(e($this->body)) : NULL;
     }
 
-    public function getExcerptAttribute($value){
-        return $this->excerpt ? Markdown::convertToHtml(e($this->excerpt)) : NULL;
-    }
+    // public function getExcerptAttribute($value){
+    //     return $this->excerpt ? Markdown::convertToHtml(e($this->excerpt)) : NULL;
+    // }
 
     public function dateFormatted($showTime = false){
         $format = "d/m/Y";

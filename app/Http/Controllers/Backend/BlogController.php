@@ -18,12 +18,21 @@ class BlogController extends BackendController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $posts = Post::with('category', 'author')->latest()->paginate($this->limit);
-        $postCount = Post::count();
-        return view('backend.blog.index', compact('posts', 'postCount'));
+        if(($status = $request->get('status')) && $status == 'trash')
+        {
+            $posts = Post::onlyTrashed()->with('category', 'author')->latest()->paginate($this->limit);
+            $postCount = Post::onlyTrashed()->count();
+            $onlyTrashed = TRUE;
+        }else{
+            $posts = Post::with('category', 'author')->latest()->paginate($this->limit);
+            $postCount = Post::count();
+            $onlyTrashed = FALSE;
+        }
+
+        return view('backend.blog.index', compact('posts', 'postCount' , 'onlyTrashed'));
     }
 
     /**
@@ -58,27 +67,25 @@ class BlogController extends BackendController
                 if($request->hasFile('image')){
                 $file = $request->file('image');
                 $fileName = $file->getClientOriginalName();
-                $path = public_path('/img');
+                $path = public_path().'/img';
                 $success =  $file->move($path, $fileName);
+                $data['image'] =  $fileName;
 
                 if($success){
                     $width = config('cms.image.thumbnail.width');
                     $height = config('cms.image.thumbnail.height');
                     $extension = $file->getClientOriginalExtension();
                     $thumbnail =   str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
-                    $path = public_path('/img');
-                    Image::make($path . '/' . $fileName)
+                    $path = public_path().'/img';
+                     Image::make($path . '/' . $fileName)
                         ->resize($width,$height)
                         ->save($path . '/' . $thumbnail);
                     }
                 }
-
             $title = $request->title;
             $slug = str_slug($title, '-');
             $data['slug'] = $slug;
             $data['author_id'] = $author;
-           // $data['image'] =
-            // dd($data);
             $post = new Post($data);
             $confirm = $post->save();
              if($confirm){
@@ -99,7 +106,7 @@ class BlogController extends BackendController
     public function show($id)
     {
         //
-        return view('backend.blog.show');
+        //return view('backend.blog.show');
     }
 
     /**
@@ -111,7 +118,8 @@ class BlogController extends BackendController
     public function edit($id)
     {
         //
-        return view('backend.blog.edit');
+        $post = Post::findOrFail($id);
+        return view('backend.blog.edit', compact('post'));
     }
 
     /**
@@ -123,7 +131,46 @@ class BlogController extends BackendController
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $post = Post::findOrFail($id);
+
+        $this->validate($request,[
+            'title'         =>'required',
+            'body'          =>'required',
+            'category_id'   => 'required',
+        ]);
+        $data =  $request->only(['title', 'body','excerpt' ,'image', 'published_at', 'category_id', 'author_id']);
+        if($request->hasFile('image')){
+        $file = $request->file('image');
+        $fileName = $file->getClientOriginalName();
+        $path = public_path().'/img';
+        $success =  $file->move($path, $fileName);
+        $data['image'] =  $fileName;
+
+        if($success){
+            $width = config('cms.image.thumbnail.width');
+            $height = config('cms.image.thumbnail.height');
+            $extension = $file->getClientOriginalExtension();
+            $thumbnail =   str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
+            $path = public_path().'/img';
+            Image::make($path . '/' . $fileName)
+                ->resize($width,$height)
+                ->save($path . '/' . $thumbnail);
+            }
+        }
+            $author = Auth::user()->id;
+            $data['author_id'] = $author;
+            $confirm = $post->update($data);
+            if($confirm){
+                    toastr()->success('Blog Post Updated Successfully', 'Success');
+                    return redirect('/backend/blog');
+            }else{
+                    toastr()->error('An error occurred while Updating the post', 'Error');
+                    return back();
+            }
+
+
+
     }
 
     /**
@@ -135,5 +182,31 @@ class BlogController extends BackendController
     public function destroy($id)
     {
         //
+        Post::findOrFail($id)->delete();
+        toastr()->warning('Blog Post has been moved to trash', 'info');
+        return redirect('/backend/blog');
+
+    }
+
+    public function forceDestroy($id)
+    {
+        Post::withTrashed()->findOrFail($id)->forceDelete();
+        toastr()->success('Blog Post has been Deleted Permanently', 'success');
+        return redirect('/backend/blog?status=trash');
+    }
+
+    public function restore($id)
+    {
+        $post = Post::withTrashed()->findOrFail($id);
+        $post->restore();
+         toastr()->success('Blog Post Has been Restored Successfully', 'Success');
+        return redirect('/backend/blog');
+    }
+
+    public function getTrashed(){
+
+        $trash = Post::with('category', 'author')->onlyTrashed()->paginate($this->limit);
+
+        return view('backend.blog.trashed', compact('trash'));
     }
 }

@@ -16,14 +16,15 @@
       <ol class="breadcrumb">
         <li><a href="{{ url('/home')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li><a href="{{ route('blog.index')}}">Blog</a></li>
-        <li class="active">All Post</li>
+        <li class="active">Add New Post</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
         <div class="row">
-          <div class="col-xs-12">
+          {!! Form::open( ['method'=>'POST', 'action'=>'Backend\BlogController@store','files'=>true, 'id'=>'post-form' ]) !!}
+          <div class="col-md-9">
             <div class="box">
                 {{-- <div class="box-header">
                     <div class="pull-left">
@@ -34,7 +35,6 @@
               <!-- /.box-header -->
 
               <div class="box-body ">
-                    {!! Form::open( ['method'=>'POST', 'action'=>'Backend\BlogController@store','files'=>true, ]) !!}
                         <div class="form-group @error('title') is-invalid @enderror">
                             {!! Form::label('title') !!}
                             {!! Form::text('title', null, ['class'=>'form-control ', 'placeholder'=>'Enter The Title']) !!}
@@ -43,16 +43,7 @@
                                 <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                             @enderror
                         </div>
-
-                        {{--  <div class="form-group @error('slug') is-invalid  @enderror ">
-                            {!! Form::label('slug') !!}
-                            {!! Form::text('slug', null, ['class'=>'form-control', 'placeholder'=>'Enter The Slug']) !!}
-                            @error('slug')
-                                <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
-                             @enderror
-                        </div>  --}}
-
-                        <div class="form-group @error('excerpt') is-invalid @enderror">
+                        <div class="form-group excerpt @error('excerpt') is-invalid @enderror">
                             {!! Form::label('excerpt') !!}
                             {!! Form::textarea('excerpt', null, ['class'=>'form-control', 'placeholder'=>'Enter The Excerpt']) !!}
                             @error('excerpt')
@@ -67,41 +58,80 @@
                                 <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group @error('published_at') is-invalid @enderror">
-                            {!! Form::label('published_at', 'Published Date') !!}
-                            {!! Form::text('published_at', null, ['class'=>'form-control', 'placeholder'=>'Y-m-d H:i:s']) !!}
-                            @error('published_at')
-                                 <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
-                             @enderror
-                        </div>
-
-                        <div class="form-group @error('category_id') is-invalid @enderror ">
-                            {!! Form::label('category_id', 'Category') !!}
-                            {!! Form::select('category_id', App\Category::pluck('title', 'id'), null, ['class'=>'form-control', 'placeholder'=>'Choose Category']) !!}
-
-                            @error('category_id')
-                            <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
-                        @enderror
-                        </div>
-
-                        <div class="form-group @error('image') is-invalid @enderror ">
-                            {!! Form::label('image', 'Image') !!}
-                            {!! Form::file('image') !!}
-
-                            @error('image')
-                            <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
-                        @enderror
-                        </div>
-
-                        {!! Form::submit('Create New Post', ['class'=>'btn btn-primary']) !!}
-                    {!! Form::close() !!}
-
               </div>
               <!-- /.box-body -->
-
             </div>
             <!-- /.box -->
           </div>
+          <div class="col-md-3">
+            <div class="box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Publish</h3>
+                  </div>
+                  <div class="box-body">
+                    <div class="form-group @error('published_at') is-invalid @enderror">
+                      {!! Form::label('published_at', 'Published Date') !!}
+                      <div class="input-group date" id="datetimepicker1">
+                          {!! Form::text('published_at', null, ['class'=>'form-control', 'placeholder'=>'Y-m-d H:i:s']) !!}
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calender"></span>
+                          </span>
+                      </div>
+                      @error('published_at')
+                           <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
+                       @enderror
+                  </div>
+                  </div>
+                  <div class="box-footer clearfix">
+                      <div class="pull-left">
+                          <a id="draft-btn" class="btn btn-adn"> Save Draft</a>
+                      </div>
+                      <div class="pull-right">
+                        {!! Form::submit('Publish', ['class'=>'btn btn-primary']) !!}
+                      </div>
+                  </div>
+            </div>
+
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Category</h3>
+                </div>
+                <div class="box-body">
+                    <div class="form-group @error('category_id') is-invalid @enderror ">
+                      {!! Form::select('category_id', App\Category::pluck('title', 'id'), null, ['class'=>'form-control', 'placeholder'=>'Choose Category']) !!}
+                      @error('category_id')
+                      <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
+                     @enderror
+                   </div>
+                </div>
+            </div>
+         <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title with-border">
+                      Featured Image
+                    </h3>
+                    <div class="box-body text-center">
+                      <div class="form-group @error('image') is-invalid @enderror ">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                              <img src="http://placehold.it/200x150&text=No+Image" alt="">
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                            <div>
+                              <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>{!! Form::file('image') !!}</span>
+                              <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                          </div>
+
+                        @error('image')
+                        <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
+                         @enderror
+                    </div>
+                    </div>
+                </div>
+             </div>
+          </div>
+          {!! Form::close() !!}
         </div>
       <!-- ./row -->
     </section>
@@ -109,13 +139,7 @@
   </div>
 @endsection
 
-@section('script')
+@include('backend.blog.script')
 
-  <script type="text/javascript">
-      $('ul.pagination').addClass('no-margin pagination-sm');
-
-  </script>
-
-@endsection
 
 
