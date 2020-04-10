@@ -160,7 +160,11 @@ class BlogController extends BackendController
         }
             $author = Auth::user()->id;
             $data['author_id'] = $author;
+            $oldImage = $post->image;
             $confirm = $post->update($data);
+                if($oldImage !== $post->image){
+                    $this->removeImage($oldImage);
+                }
             if($confirm){
                     toastr()->success('Blog Post Updated Successfully', 'Success');
                     return redirect('/backend/blog');
@@ -190,7 +194,9 @@ class BlogController extends BackendController
 
     public function forceDestroy($id)
     {
-        Post::withTrashed()->findOrFail($id)->forceDelete();
+        $post = Post::withTrashed()->findOrFail($id);
+        $post->forceDelete();
+        $this->removeImage($post->image);
         toastr()->success('Blog Post has been Deleted Permanently', 'success');
         return redirect('/backend/blog?status=trash');
     }
@@ -203,10 +209,27 @@ class BlogController extends BackendController
         return redirect('/backend/blog');
     }
 
-    public function getTrashed(){
+    public function getTrashed()
+    {
 
         $trash = Post::with('category', 'author')->onlyTrashed()->paginate($this->limit);
 
         return view('backend.blog.trashed', compact('trash'));
+    }
+
+
+    public function removeImage($image)
+    {
+        if(!empty($image))
+        {
+            $imagePath = public_path('img'). '/' . $image;
+            $ext = substr(strchr($image, '.'), 1);
+            $thumbnail = str_replace(".{$ext}", "_thumb.{$ext}", $image);
+            $thumbnailPath = public_path('img'). '/' . $thumbnail;
+
+            if( file_exists($imagePath) ) unlink($imagePath);
+            if( file_exists($thumbnailPath) ) unlink($thumbnailPath);
+
+        }
     }
 }

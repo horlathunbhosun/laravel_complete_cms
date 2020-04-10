@@ -18,7 +18,7 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <button type="submit" class="btn btn-xs btn-danger">
-                                            <i class="fa fa-times"></i>
+                                            <i class="fa fa-trash"></i>
                                         </button>
                                         {!! Form::close() !!}
                                     </td>

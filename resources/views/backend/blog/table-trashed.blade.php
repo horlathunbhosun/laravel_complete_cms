@@ -9,8 +9,6 @@
         </tr>
         <tbody>
           @foreach ($posts as $post)
-
-
             <tr>
                 <td>
                     {!! Form::open(['style'=> 'display:inline-block;', 'method' => 'PUT' , 'action'=>['Backend\BlogController@restore', $post->id]]) !!}
