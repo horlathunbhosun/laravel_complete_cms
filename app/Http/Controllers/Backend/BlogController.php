@@ -21,20 +21,44 @@ class BlogController extends BackendController
     public function index(Request $request)
     {
         //
+        $onlyTrashed = FALSE;
+
         if(($status = $request->get('status')) && $status == 'trash')
         {
             $posts = Post::onlyTrashed()->with('category', 'author')->latest()->paginate($this->limit);
             $postCount = Post::onlyTrashed()->count();
             $onlyTrashed = TRUE;
-        }else{
+        }elseif($status == 'published'){
+            $posts = Post::published()->with('category', 'author')->latest()->paginate($this->limit);
+            $postCount = Post::published()->count();
+        }elseif($status == 'scheduled'){
+            $posts = Post::scheduled()->with('category', 'author')->latest()->paginate($this->limit);
+            $postCount = Post::scheduled()->count();
+        }elseif($status == 'draft'){
+            $posts = Post::draft()->with('category', 'author')->latest()->paginate($this->limit);
+            $postCount = Post::draft()->count();
+        }
+        else{
             $posts = Post::with('category', 'author')->latest()->paginate($this->limit);
             $postCount = Post::count();
-            $onlyTrashed = FALSE;
         }
+        $statuslist = $this->statusList();
 
-        return view('backend.blog.index', compact('posts', 'postCount' , 'onlyTrashed'));
+        return view('backend.blog.index', compact('posts', 'postCount' , 'onlyTrashed', 'statuslist'));
     }
 
+
+
+    private function statusList(){
+        return [
+
+               'all' => Post::count(),
+               'published' => Post::published()->count(),
+               'scheduled' => Post::scheduled()->count(),
+               'draft' => Post::draft()->count(),
+               'trash' => Post::onlyTrashed()->count()
+        ];
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -206,7 +230,7 @@ class BlogController extends BackendController
         $post = Post::withTrashed()->findOrFail($id);
         $post->restore();
          toastr()->success('Blog Post Has been Restored Successfully', 'Success');
-        return redirect('/backend/blog');
+        return redirect()->back();
     }
 
     public function getTrashed()

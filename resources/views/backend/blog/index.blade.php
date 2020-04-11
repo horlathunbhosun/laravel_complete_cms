@@ -31,8 +31,14 @@
                     </div>
 
                     <div class="pull-right" style="padding:7px 0px">
-                        <a href="?status=all">All</a> |
-                        <a href="?status=trash">Trash</a>
+                        <?php $links = [] ?>
+                        @foreach ($statuslist as $key => $value)
+                            @if($value)
+                                    <?php $selected = Request::get('status') == $key ? 'selected-status' : '' ?>
+                                    <?php $links[] = "<a class=\"{$selected}\" href=\"?status={$key}\">" . ucwords($key) . "({$value})</a> "?>
+                            @endif
+                        @endforeach
+                        {!! implode(' | ', $links)!!}
 
                     </div>
                 </div>
@@ -61,7 +67,7 @@
 
 
                   <ul class="pagination no-margin">
-                     {!! $posts->render()!!}
+                     {!! $posts->appends( Request::query() )->render()!!}
                   </ul>
                 </div>
                 <div class="pull-right">
