@@ -105,7 +105,7 @@
                    </div>
                 </div>
             </div>
-         <div class="box">
+            <div class="box">
                 <div class="box-header">
                     <h3 class="box-title with-border">
                       Featured Image
@@ -122,7 +122,6 @@
                               <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                             </div>
                           </div>
-
                         @error('image')
                         <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                          @enderror

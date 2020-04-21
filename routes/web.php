@@ -50,3 +50,6 @@ Route::get('/backend/blog/trash',[
 ]);
 
 Route::resource('/backend/blog', 'Backend\BlogController');
+Route::resource('/backend/categories', 'Backend\CategoriesController');
+
+
