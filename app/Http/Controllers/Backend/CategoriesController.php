@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Backend;
 use config;
 
+use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// use App\Http\Requests\CategoryDestroyRequest;
+use App\Http\Requests\CategoryDestroyRequest;
 
 class CategoriesController extends BackendController
 {
@@ -122,13 +123,16 @@ class CategoriesController extends BackendController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Requests\CategoryDestroyRequest $request,$id)
+
+    public function destroy($id)
 
     {
-        //
-
-        Category::findorFail($id)->delete();
+        $category = Category::findOrFail($id);
+        Post::withTrashed()->whereCategoryId($id)->update(['category_id' => config('cms.category.default_category_id')]);
+        $category->posts()->delete();
+        $category->delete();
         toastr()->success('Category Deleted Successfully', 'Success');
+        return back();
 
     }
 }
