@@ -9,5 +9,8 @@
             ],
             'category' => [
                 'default_category_id' => 1
+            ],
+            'user' => [
+                    'default_user_id' => 1
             ]
     ];

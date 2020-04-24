@@ -15,7 +15,7 @@ class AddBioToUserColumn extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->text('bio');
+            $table->text('bio')->nullable();
         });
     }
 
@@ -28,9 +28,9 @@ class AddBioToUserColumn extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-          
+
             $table->dropColumn('bio');
-            
+
         });
     }
 }

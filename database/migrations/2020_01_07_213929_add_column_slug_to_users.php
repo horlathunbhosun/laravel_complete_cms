@@ -15,7 +15,7 @@ class AddColumnSlugToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('slug');
+            $table->string('slug')->nullable();
         });
     }
 
@@ -28,9 +28,9 @@ class AddColumnSlugToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-      
+
             $table->dropColumn('slug');
-            
+
         });
     }
 }

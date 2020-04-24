@@ -51,5 +51,14 @@ Route::get('/backend/blog/trash',[
 
 Route::resource('/backend/blog', 'Backend\BlogController');
 Route::resource('/backend/categories', 'Backend\CategoriesController');
+Route::resource('/backend/users', 'Backend\UsersController');
+
+Route::get('/backend/users/confirm/{users}', [
+    'uses' => 'Backend\UsersController@confirm',
+    'as' => 'backend.user.confirm'
+]);
+
+
+
 
 
