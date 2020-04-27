@@ -68,20 +68,26 @@
                             @enderror
                         </div>
 
-                        {{-- <div class="form-group @error('bio') is-invalid @enderror">
-                            {!! Form::label('bio') !!}
-                            {!! Form::textarea('bio', null, ['class'=>'form-control ', 'placeholder'=>'Enter The Bio']) !!}
+                        <div class="form-group @error('role') is-invalid @enderror">
+                            {!! Form::label('role') !!}
+                            {!! Form::select('role', App\Role::pluck('display_name', 'id'), null, ['class'=>'form-control ', 'placeholder'=>'Choose The Role']) !!}
+
+                            @error('role')
+                                <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group @error('bio') is-invalid @enderror">
+                            {!! Form::label('Bio') !!}
+                            {!! Form::textarea('bio', null,  ['class'=>'form-control ', 'placeholder'=>'Enter Bio']) !!}
 
                             @error('bio')
                                 <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                             @enderror
-                        </div> --}}
-
+                        </div>
 
                         <div class="box-footer clearfix">
-                            {{--  <div class="pull-left">
 
-                            </div>  --}}
                             <div class="pull-left">
                               {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
                               <a href="{{ url('backend/users')}}" class="btn btn-default">Cancel</a>

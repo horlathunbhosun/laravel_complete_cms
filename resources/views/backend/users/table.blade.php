@@ -29,10 +29,10 @@
                                             </a>
                                         @endif
 
-                                    </td>
+                                    </td>   
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->role}}</td>
+                                    <td>{{$user->roles->first()->display_name}}</td>
                                     {{-- <td> {{$user->posts->count()}} </td> --}}
 
                                 </tr>

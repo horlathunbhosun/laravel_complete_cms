@@ -41,14 +41,14 @@
                             <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group @error('email') is-invalid @enderror">
+                    {{-- <div class="form-group @error('email') is-invalid @enderror">
                         {!! Form::label('email') !!}
                         {!! Form::text('email', null, ['class'=>'form-control ', 'placeholder'=>'Enter Email']) !!}
 
                         @error('email')
                             <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="form-group @error('password') is-invalid @enderror">
                         {!! Form::label('password') !!}
@@ -68,20 +68,30 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="form-group @error('bio') is-invalid @enderror">
-                        {!! Form::label('bio') !!}
-                        {!! Form::textarea('bio', null, ['class'=>'form-control ', 'placeholder'=>'Enter The Bio']) !!}
+                    <div class="form-group @error('role') is-invalid @enderror">
+                        {!! Form::label('role') !!}
+                        @if ($user->exist && $user->id == config('cms.user.default_user_id'))
+                            {{!! Form::hidden('role', $user->roles->first()->id)!!}}
+                            <p class="form-control-static">{{ $user->roles->first()->display_name}}</p>
+                        @else
+                            {!! Form::select('role', App\Role::pluck('display_name', 'id'), $user->exist ? $user->roles->first()->id : null, ['class'=>'form-control ']) !!}
+                        @endif
 
+                        @error('role')
+                            <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="form-group @error('bio') is-invalid @enderror">
+                        {!! Form::label('Bio') !!}
+                        {!! Form::textarea('bio', null, ['class'=>'form-control ', 'placeholder'=>'Enter Bio']) !!}
+                            
                         @error('bio')
                             <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                         @enderror
-                    </div> --}}
-
+                    </div>
 
                         <div class="box-footer clearfix">
-                            {{--  <div class="pull-left">
 
-                            </div>  --}}
                             <div class="pull-left">
                               {!! Form::submit('Save', ['class'=>'btn btn-primary']) !!}
                               <a href="{{ url('backend/categories')}}" class="btn btn-default">Cancel</a>

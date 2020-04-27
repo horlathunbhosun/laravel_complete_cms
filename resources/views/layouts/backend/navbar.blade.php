@@ -29,7 +29,7 @@
             <img src="{{Auth::user()->gravatar()}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name }} - Web Developer
+                  {{ Auth::user()->name }} - {{ Auth::user()->roles->first()->display_name}}
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -39,9 +39,9 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{url('/logout')}}" 
+                  <a href="{{url('/logout')}}"
                     class="btn btn-default btn-flat"
-                    onclick="event.preventDefault(); 
+                    onclick="event.preventDefault();
                     document.getElementById('logout-form').submit()">Log out
                  </a>
 

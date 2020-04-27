@@ -7,11 +7,15 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Laratrust\Traits\LaratrustUserTrait;
+
 
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use LaratrustUserTrait;
+
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'slug'
+        'name', 'email', 'password', 'slug', 'bio'
     ];
 
     /**

@@ -60,7 +60,8 @@ class CategoriesController extends BackendController
 
         $done = New Category($data);
         $confirm = $done->save();
-        if($confirm){
+        if($confirm)
+        {
             toastr()->success('Category Created Successfully', 'Success');
             return redirect('/backend/categories');
         }
@@ -109,7 +110,8 @@ class CategoriesController extends BackendController
         $data['slug'] = $slug;
 
         $cat = $category->update($data);
-         if($cat){
+         if ($cat)
+         {
             toastr()->success('Category Updated Successfully', 'Success');
             return redirect('/backend/categories');
          }

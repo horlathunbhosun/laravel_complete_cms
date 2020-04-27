@@ -36,7 +36,10 @@ class BlogController extends BackendController
         }elseif($status == 'draft'){
             $posts = Post::draft()->with('category', 'author')->latest()->paginate($this->limit);
             $postCount = Post::draft()->count();
-        }
+        }elseif($status == 'own'){
+                $posts = Auth::user()->posts()->with('category', 'author')->latest()->paginate($this->limit);
+                $postCount = Auth::user()->posts()->count();
+         }
         else{
             $posts = Post::with('category', 'author')->latest()->paginate($this->limit);
             $postCount = Post::count();
@@ -50,7 +53,7 @@ class BlogController extends BackendController
 
     private function statusList(){
         return [
-
+                'own' => Auth::user()->posts()->count(),
                'all' => Post::count(),
                'published' => Post::published()->count(),
                'scheduled' => Post::scheduled()->count(),
@@ -87,34 +90,38 @@ class BlogController extends BackendController
 
             $author = Auth::user()->id;
             $data =  $request->only(['title', 'slug', 'body','excerpt' ,'image', 'published_at', 'category_id', 'author_id']);
-                if($request->hasFile('image')){
+            if($request->hasFile('image'))
+            {
                 $file = $request->file('image');
                 $fileName = $file->getClientOriginalName();
                 $path = public_path().'/img';
                 $success =  $file->move($path, $fileName);
                 $data['image'] =  $fileName;
-
-                if($success){
+                if($success)
+                {
                     $width = config('cms.image.thumbnail.width');
                     $height = config('cms.image.thumbnail.height');
                     $extension = $file->getClientOriginalExtension();
                     $thumbnail =   str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
                     $path = public_path().'/img';
-                     Image::make($path . '/' . $fileName)
+                        Image::make($path . '/' . $fileName)
                         ->resize($width,$height)
                         ->save($path . '/' . $thumbnail);
-                    }
                 }
+            }
             $title = $request->title;
             $slug = str_slug($title, '-');
             $data['slug'] = $slug;
             $data['author_id'] = $author;
             $post = new Post($data);
             $confirm = $post->save();
-             if($confirm){
-                    toastr()->success('Blog Post Submitted Successfully', 'Success');
-                    return redirect('/backend/blog');
-              }else{
+             if($confirm)
+             {
+                toastr()->success('Blog Post Submitted Successfully', 'Success');
+                return redirect('/backend/blog');
+              }
+              else
+              {
                     toastr()->error('An error occurred while submitting', 'Error');
                     return back();
               }
@@ -169,32 +176,36 @@ class BlogController extends BackendController
         $path = public_path().'/img';
         $success =  $file->move($path, $fileName);
         $data['image'] =  $fileName;
-
-        if($success){
-            $width = config('cms.image.thumbnail.width');
-            $height = config('cms.image.thumbnail.height');
-            $extension = $file->getClientOriginalExtension();
-            $thumbnail =   str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
-            $path = public_path().'/img';
-            Image::make($path . '/' . $fileName)
-                ->resize($width,$height)
-                ->save($path . '/' . $thumbnail);
+        if($success)
+           {
+                $width = config('cms.image.thumbnail.width');
+                $height = config('cms.image.thumbnail.height');
+                $extension = $file->getClientOriginalExtension();
+                $thumbnail =   str_replace(".{$extension}", "_thumb.{$extension}", $fileName);
+                $path = public_path().'/img';
+                Image::make($path . '/' . $fileName)
+                    ->resize($width,$height)
+                    ->save($path . '/' . $thumbnail);
             }
         }
-            $author = Auth::user()->id;
-            $data['author_id'] = $author;
-            $oldImage = $post->image;
-            $confirm = $post->update($data);
-                if($oldImage !== $post->image){
-                    $this->removeImage($oldImage);
-                }
-            if($confirm){
-                    toastr()->success('Blog Post Updated Successfully', 'Success');
-                    return redirect('/backend/blog');
-            }else{
-                    toastr()->error('An error occurred while Updating the post', 'Error');
-                    return back();
-            }
+        $author = Auth::user()->id;
+        $data['author_id'] = $author;
+        $oldImage = $post->image;
+        $confirm = $post->update($data);
+        if($oldImage !== $post->image)
+        {
+            $this->removeImage($oldImage);
+        }
+        if($confirm)
+        {
+                toastr()->success('Blog Post Updated Successfully', 'Success');
+                return redirect('/backend/blog');
+        }
+        else
+        {
+                toastr()->error('An error occurred while Updating the post', 'Error');
+                return back();
+        }
 
 
 

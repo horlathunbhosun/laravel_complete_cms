@@ -7,6 +7,7 @@ use App\User;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends BackendController
 {
@@ -49,16 +50,23 @@ class UsersController extends BackendController
         $this->validate($request,[
             'name'         =>     'required',
             'email'        =>     'email|required|unique:users',
-            'password'     =>     'required|confirmed'
+            'password'     =>     'required|confirmed',
+            'role'        =>      'required',
+           // 'slug'       =>        'required|unique:users'
         ]);
 
-        $title = $request->title;
-        $slug =  str_slug($title, '-');
-        $data = $request->only('name', 'email', 'password', 'slug');
+
+
+        $data = $request->only(['name', 'email', 'password', 'slug', 'bio']);
+        $name = $request->name;
+        $password = Hash::make($request->password);
+        $slug =  str_slug($name, '-');
         $data['slug'] = $slug;
-        $done = New User($data);
-        $confirm = $done->save();
-        if($confirm){
+        $data['password'] = $password;
+        $done = User::create($data);
+        $done->attachRole($request->role);
+        if($done)
+        {
             toastr()->success('User Created Successfully', 'Success');
             return redirect('/backend/users');
         }
@@ -103,24 +111,29 @@ class UsersController extends BackendController
 
         $this->validate($request,[
             'name'         =>     'required',
-            'email'        =>     'email|required|unique:users,email',
-            'password'     =>     'required_with:password_confirmation|confirmed'
+            // 'email'        =>     'email|required|unique:users,email',
+            'password'     =>     'required_with:password_confirmation|confirmed',
+            'role'         =>      'required',
+            //'slug'         =>      'required|unique:users'
         ]);
 
 
-        // $user = User::findOrFail($id);
-        // $title = $request->title;
-        // $slug = str_slug($title, '-');
-        // $data = $request->only('title', 'slug');
-        // $data['slug'] = $slug;
-
-        // $cat = $user->update($data);
-        //  if($cat){
-        //     toastr()->success('User Updated Successfully', 'Success');
-        //     return redirect('/backend/users');
-        //  }
-        //     toastr()->error('An error occurred while Updating the User info', 'Error');
-        //     return back();
+        $user = User::findOrFail($id);
+        $user->detachRole($user->role);
+        $name = $request->name;
+        $slug =  str_slug($name, '-');
+        $password = Hash::make($request->password);
+        $data = $request->only(['name',  'password' , 'slug', 'bio']);
+        $data['password'] = $password;
+        $data['slug'] = $slug;
+        $user->attachRole($request->role);
+        $cat = $user->update($data);
+         if($cat){
+            toastr()->success('User Updated Successfully', 'Success');
+            return redirect('/backend/users');
+         }
+            toastr()->error('An error occurred while Updating the User info', 'Error');
+            return back();
     }
 
     /**
@@ -137,13 +150,16 @@ class UsersController extends BackendController
         $selectedUser = $request->selected_user;
         $user = User::findOrFail($id);
 
-        if($deleteOption == "delete"){
+        if($deleteOption == "delete")
+        {
             $user->posts()->withTrashed();
             // $image = Post::where('image', $selectedUser);
             // $this->removeImage($image);
             $user->forceDelete();
 
-        }elseif ($deleteOption == "attribute"){
+        }
+        elseif ($deleteOption == "attribute")
+        {
             $user->posts()->update(['author_id' => $selectedUser]);
         }
         $user->delete();
