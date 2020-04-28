@@ -1,8 +1,8 @@
 <?php
 
 
-use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
         //reset the users tableB
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('users')->truncate();
-         $faker = Factory::create();
+         $faker = \Faker\Factory::create();
         //generate three authors
         DB::table('users')->insert([
             [

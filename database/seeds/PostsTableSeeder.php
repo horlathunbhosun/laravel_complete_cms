@@ -1,7 +1,6 @@
 <?php
 
 use Carbon\Carbon;
-use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -20,7 +19,7 @@ class PostsTableSeeder extends Seeder
         // genrate 10 posts
 
         $posts = [];
-        $faker = Factory::create();
+        $faker = \Faker\Factory::create();
         for($i = 1; $i <= 10;  $i++)
         {
             $image = "Post_Image_" . rand(1,5). '.jpg';
