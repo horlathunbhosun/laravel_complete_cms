@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59bfad91-212a-4921-a4e2-3e1658824a9f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +195,7 @@
       <workItem from="1654518716742" duration="215000" />
       <workItem from="1654558830997" duration="1092000" />
       <workItem from="1654592046635" duration="3253000" />
-      <workItem from="1655105135792" duration="293000" />
+      <workItem from="1655105135792" duration="1040000" />
     </task>
     <servers />
   </component>
