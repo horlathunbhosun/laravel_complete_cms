@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Ola olu',
                 'slug' => 'ola-olu',
-                'email' => 'ola@example.com',
+                'email' => 'admin@example.com',
                 'password' => bcrypt('secret'),
                 'bio'  =>  $faker->text(rand(250, 350))
 
