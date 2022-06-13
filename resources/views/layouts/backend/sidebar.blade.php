@@ -40,6 +40,8 @@
         @if(check_user_permissions(request(), "Users@index"))
         <li><a href="{{ route('users.index')}}"><i class="fa fa-users"></i> <span>Users</span></a></li>
         @endif
+
+              <li><a href="{{ route('plans.index')}}"><i class="fa fa-users"></i> <span>Payment Plans</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

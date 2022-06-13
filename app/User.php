@@ -62,4 +62,8 @@ class User extends Authenticatable
     public function getRouteKeyName(){
         return 'slug';
     }
+
+    public function subscriptions(){
+        return $this->hasMany('App\Subscription', 'user_id');
+    }
 }

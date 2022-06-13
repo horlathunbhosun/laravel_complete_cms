@@ -7,6 +7,7 @@ use App\User;
 use App\Category;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class BlogController extends Controller
 
@@ -18,9 +19,18 @@ class BlogController extends Controller
                     ->LastestFirst()
                     ->published()
                     ->simplePaginate($this->limit);
-            return view('blog.index', compact('posts'));
+
+//                var_dump($posts);
+
+
+            // return Inertia::render('HomeComponent');
+           return view('frontend.home.index', compact('posts'));
         // dd(\DB::getQueryLog());
     }
+
+
+
+    
 
     public function category(Category $category){
 
@@ -31,9 +41,9 @@ class BlogController extends Controller
                         ->orderBy('published_at', 'desc')
                         ->where("published_at", "<=", Carbon::now())
                         ->simplePaginate($this->limit);
-    
+
         return view('blog.index', compact('posts',  'categoryName'));
-        //   dd(\DB::getQueryLog()); 
+        //   dd(\DB::getQueryLog());
     }
 
 
@@ -60,6 +70,7 @@ class BlogController extends Controller
         // $post->;
         $post = Post::published()->where('slug',$slug)->increment('view_count', 1);
         $posts = Post::published()->where('slug',$slug)->first();
+        dd($posts);
         return view('blog.show', compact('posts'));
     }
 }

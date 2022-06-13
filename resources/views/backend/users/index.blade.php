@@ -60,7 +60,7 @@
                   </ul>
                 </div>
                 <div class="pull-right">
-                    <small>{{ $userCount}} {{ str_plural('item', $userCount)}}</small>
+                    <small>{{ $userCount}} {{ Str::plural('item', $userCount)}}</small>
                 </div>
               </div>
             </div>

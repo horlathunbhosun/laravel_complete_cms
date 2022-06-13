@@ -14,7 +14,7 @@
 Route::get('/',  [
         'uses' => 'BlogController@index',
         'as' => 'blog'
-]);
+])->name('blog');
 
 Route::get('/show', 'PostController@show');
 
@@ -35,6 +35,19 @@ Route::get('/author/{author}', [
 ]);
 
 
+Route::prefix('user')->group(function (){
+    Route::get('/signup', 'AuthenticationController@signup')->name('user.signup');
+    Route::get('/signin', 'AuthenticationController@signinForm')->name('user.signin');
+    Route::get('/verify', 'AuthenticationController@verifyAccount')->name('user.verify.form');
+    Route::get('/forget/password', 'AuthenticationController@forgetPassword')->name('user.forget');
+
+    Route::post('/register', 'AuthenticationController@register')->name('user.register');
+    Route::post('/verify', 'AuthenticationController@verify')->name('user.verify');
+    Route::post('/login', 'AuthenticationController@loginUser')->name('user.login');
+});
+
+
+
 
 Auth::routes();
 
@@ -52,6 +65,9 @@ Route::get('/backend/blog/trash',[
 Route::resource('/backend/blog', 'Backend\BlogController');
 Route::resource('/backend/categories', 'Backend\CategoriesController');
 Route::resource('/backend/users', 'Backend\UsersController');
+
+
+Route::resource('/backend/payment/plans', 'Backend\PaymentPlanController');
 
 Route::get('/backend/users/confirm/{users}', [
     'uses' => 'Backend\UsersController@confirm',

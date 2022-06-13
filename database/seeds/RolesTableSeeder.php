@@ -32,6 +32,12 @@ class RolesTableSeeder extends Seeder
         $author->display_name = "Author";
         $author->save();
 
+
+        $user = new Role();
+        $user->name = "user";
+        $user->display_name = "User";
+        $user->save();
+
         //admin user
         $user1 = User::find(1);
         $user1->detachRole($admin);
@@ -48,6 +54,13 @@ class RolesTableSeeder extends Seeder
         $user3 = User::find(3);
         $user3->detachRole($author);
         $user3->attachRole($author);
+
+
+        $user4 = User::find(4);
+        $user4->detachRole($user);
+        $user4->attachRole($user);
+
+
 
     }
 }

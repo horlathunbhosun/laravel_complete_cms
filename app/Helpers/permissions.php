@@ -21,7 +21,8 @@ function  check_user_permissions($request, $actionName = NULL, $id = NULL)
     $classesMap = [
         'Blog' => 'post',
         'Categories' => 'category',
-        'Users' => 'user'
+        'Users' => 'user',
+        'PaymentsPlans' => 'plan'
     ];
     $crudPermission = [
         // 'create' => ['create', 'store'],
@@ -44,7 +45,7 @@ function  check_user_permissions($request, $actionName = NULL, $id = NULL)
                     $id = !is_null($id) ? $id : $request->route("blog");
                     //if current user has not update-other-post/delete-other-post permission
                     //make sure he/she only modify his/her own post
-                    if( $id && (!$currentUser->can('update-others-post') || !$currentUser->can('delete-others-post')))
+                    if( $id && (!$currentUser->isAbleTo('update-others-post') || !$currentUser->isAbleTo('delete-others-post')))
                     {
                         $post = Post::withTrashed()->find($id);
                         if($post->author_id != $currentUser->id){
@@ -55,7 +56,7 @@ function  check_user_permissions($request, $actionName = NULL, $id = NULL)
 
                 }
                 //if the current user dont have that permission dont allow the current request!!
-                elseif(! $currentUser->can("{$permission}-{$className}"))
+                elseif(! $currentUser->isAbleTo("{$permission}-{$className}"))
                 {
                    return false;
                 }
