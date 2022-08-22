@@ -5,7 +5,7 @@
     <!-- meta data -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>JustEroticalHub - @yield('title')</title>
+    <title>JustEroticaHub - @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--font-family-->
@@ -79,7 +79,7 @@
                 </div>
                 <div class="col-lg-6 col-md-4 col-12">
                     <div class="logo-area text-center logo-xs-mrg">
-                        <a href="/"><img src="/web/img/logo/logo.png" alt="logo" /></a>
+                        <a href="/"><img src="/web/img/logo/jsthub.png" alt="logo"  style="height: 100px; border-radius: 30px"/></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-12">
@@ -87,32 +87,10 @@
                     <div class="my-cart">
                         <ul>
                             <li>
-                                <a href="#">
+                                Welcome  {{\Illuminate\Support\Facades\Auth::user()->name}}!
+                                <a href="{{route('user.dashboard')}}">
                                      Dashboard
-                            </a>
-                                <div class="mini-cart-sub">
-                                    <div class="cart-product">
-                                        <div class="single-cart">
-                                            <div class="cart-img">
-                                                <a href="#"><img src="/web/img/product/1.jpg" alt="book" /></a>
-                                            </div>
-                                            <div class="cart-info">
-                                                <h5><a href="#">Joust Duffle Bag</a></h5>
-                                                <p>1 x £60.00</p>
-                                            </div>
-                                            <div class="cart-icon">
-                                                <a href="#"><i class="fa fa-remove"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="cart-totals">
-                                        <h5>Total <span>£12.00</span></h5>
-                                    </div>
-                                    <div class="cart-bottom">
-                                        <a class="view-cart" href="cart.html">view cart</a>
-                                        <a href="checkout.html">Check out</a>
-                                    </div>
-                                </div>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -140,23 +118,30 @@
                                         Home
                                     </a>
                                 </li>
+
+
+                                @php
+                                    $categories = App\Category::paginate(3);
+                                @endphp
+                                @foreach($categories as $category)
                                 <li>
                                     <a href="product-details.html">
-                                        New Arrival
+                                        {{$category->title}}
                                     </a>
                                 </li>
+                                @endforeach
+{{--                                <li>--}}
+{{--                                    <a href="product-details.html">--}}
+{{--                                        Category 1--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="product-details.html">--}}
+{{--                                        Category 2--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
                                 <li>
-                                    <a href="product-details.html">
-                                        Category 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="product-details.html">
-                                        Category 2
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="membership.html">
+                                    <a href="{{route('user.membership')}}">
                                         Membership
                                     </a>
                                 </li>

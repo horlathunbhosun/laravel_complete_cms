@@ -8,6 +8,7 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryDestroyRequest;
+use Illuminate\Support\Str;
 
 class CategoriesController extends BackendController
 {
@@ -53,7 +54,7 @@ class CategoriesController extends BackendController
         ]);
 
         $title = $request->title;
-        $slug =  str_slug($title, '-');
+        $slug =  Str::slug($title, '-');
 
         $data = $request->only('title', 'slug');
         $data['slug'] = $slug;
@@ -105,7 +106,8 @@ class CategoriesController extends BackendController
         //
         $category = Category::findOrFail($id);
         $title = $request->title;
-        $slug = str_slug($title, '-');
+        $slug =  Str::slug($title, '-');
+
         $data = $request->only('title', 'slug');
         $data['slug'] = $slug;
 

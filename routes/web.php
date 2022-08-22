@@ -40,14 +40,21 @@ Route::prefix('user')->group(function (){
     Route::get('/signin', 'AuthenticationController@signinForm')->name('user.signin');
     Route::get('/verify', 'AuthenticationController@verifyAccount')->name('user.verify.form');
     Route::get('/forget/password', 'AuthenticationController@forgetPassword')->name('user.forget');
+    Route::get('/membership', 'BlogController@membership')->name('user.membership');
 
     Route::post('/register', 'AuthenticationController@register')->name('user.register');
     Route::post('/verify', 'AuthenticationController@verify')->name('user.verify');
     Route::post('/login', 'AuthenticationController@loginUser')->name('user.login');
+
+
 });
 
 
+Route::prefix('user')->middleware('auth.user')->group(function (){
+    Route::get('/dashboard', 'UserDashboardController@dashboard')->name('user.dashboard');
+    Route::patch('/profile', 'AuthenticationController@updateUser')->name('user.profile.update');
 
+});
 
 Auth::routes();
 

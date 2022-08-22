@@ -2,7 +2,91 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59bfad91-212a-4921-a4e2-3e1658824a9f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/accounts/dashboard.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/accounts/include/library.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/accounts/include/payment_history.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/accounts/include/update_account.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/membership/membership.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthenticationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthenticationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Backend/CategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Backend/CategoriesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_11_12_123516_create_posts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_11_12_123516_create_posts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_11_14_032157_add_published_at_to_posts.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_07_213929_add_column_slug_to_users.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_20_110049_add_bio_to_user_column.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_22_115115_add_new_post_count_column_to_posts_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_04_08_174935_add_soft_deletion_column_to_post.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2022_06_06_232215_create_subscriptions_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/PostsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/PostsTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/RolesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/RolesTableSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/animate.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/bootsnav.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/font-awesome.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/linearicons.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/owl.carousel.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/owl.theme.default.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/FontAwesome.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/Linearicons-Free.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/Linearicons-Free.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/Linearicons-Free.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/Linearicons-Free.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/Linearicons-Free.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/fontawesome-webfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/blog/b1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/blog/b2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/blog/b3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/clients/c1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/clients/c2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/clients/c3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/clients/c4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/clients/c5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/arrivals1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/arrivals2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/arrivals3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/arrivals4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/arrivals5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/arrivals6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/arrivals7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/arrivals8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/sofa-collection-banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/collection/table-banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/features/f1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/features/f2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/features/f3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/features/f4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/populer-products/p1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/populer-products/p2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/populer-products/p3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/slider/slider1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/slider/slider2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/images/slider/slider3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/js/bootsnav.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/js/custom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/js/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/js/owl.carousel.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/logo/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/frontend/logo/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontend/app.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontend/header.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/frontend/nav.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +279,11 @@
       <workItem from="1654518716742" duration="215000" />
       <workItem from="1654558830997" duration="1092000" />
       <workItem from="1654592046635" duration="3253000" />
-      <workItem from="1655105135792" duration="1040000" />
+      <workItem from="1655105135792" duration="1806000" />
+      <workItem from="1655547987998" duration="9065000" />
+      <workItem from="1655622865810" duration="1160000" />
+      <workItem from="1655730418640" duration="515000" />
+      <workItem from="1661165124334" duration="348000" />
     </task>
     <servers />
   </component>

@@ -18,14 +18,17 @@ class CreatePostsTable extends Migration
             $table->bigInteger('author_id')->unsigned();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->longText('excerpt');
-            $table->longText('body');
+            $table->longText('abstract')->nullable();
             $table->string('image')->nullable();
+            $table->integer('view_count')->default(0)->nullable();
             $table->timestamps();
+            $table->timestamp('published_at')->nullable();
             $table->bigInteger('category_id')->nullable()->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->softDeletes();
+
         });
     }
 
