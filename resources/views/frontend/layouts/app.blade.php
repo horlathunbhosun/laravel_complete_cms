@@ -5,7 +5,7 @@
     <!-- meta data -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>JustEroticaHub - @yield('title')</title>
+    <title>Karnalreads - @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--font-family-->
@@ -114,7 +114,7 @@
                         <nav>
                             <ul>
                                 <li class="active">
-                                    <a href="index.html">
+                                    <a href="#">
                                         Home
                                     </a>
                                 </li>
@@ -125,7 +125,7 @@
                                 @endphp
                                 @foreach($categories as $category)
                                 <li>
-                                    <a href="product-details.html">
+                                    <a href="#">
                                         {{$category->title}}
                                     </a>
                                 </li>
@@ -162,20 +162,20 @@
                         <nav id="mobile-menu-active">
                             <ul id="nav">
                                 <li>
-                                    <a href="index.html">Home</a>
+                                    <a href="#">Home</a>
                                 </li>
                                 <li>
-                                    <a href="product-details.html">
+                                    <a href="#">
                                         New Arrival
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product-details.html">
+                                    <a href="#">
                                         Category 1
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="product-details.html">
+                                    <a href="#">
                                         Category 2
                                     </a>
                                 </li>
