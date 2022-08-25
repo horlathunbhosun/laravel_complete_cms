@@ -40,23 +40,23 @@ class RolesTableSeeder extends Seeder
 
         //admin user
         $user1 = User::find(1);
-//        $user1->detachRole($admin);
+        $user1->detachRole($admin);
         $user1->attachRole($admin);
 
         //editor user
         $user2 = User::find(2);
-//        $user2->detachRole($editor);
+        $user2->detachRole($editor);
         $user2->attachRole($editor);
 
         //author user
 
         $user3 = User::find(3);
-//        $user3->detachRole($author);
+        $user3->detachRole($author);
         $user3->attachRole($author);
 
 
         $user4 = User::find(4);
-//        $user4->detachRole($user);
+        $user4->detachRole($user);
         $user4->attachRole($user);
 
 
