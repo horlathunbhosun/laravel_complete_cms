@@ -51,15 +51,20 @@ class Handler extends ExceptionHandler
 //    }
 
 
+    public function report(Throwable $exception){
+        parent::report($exception);
 
-    public function report(Throwable $e) // <-- USE Throwable HERE
-    {
-        parent::report($e);
+    }
+    public function shouldReport(Throwable $exception){
+        parent::shouldReport($exception);
     }
 
+    public function render($request, Throwable $e){
+        parent::render($e);
 
-    public function render($request, Throwable $e) // AND HERE
-    {
-        return parent::render($request, $e);
+    }
+    public function renderForConsole($output, Throwable $exception){
+        parent::renderForConsole($exception);
+
     }
 }
