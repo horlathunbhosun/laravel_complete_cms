@@ -7,16 +7,20 @@
                 <th>S/N</th>
                 <th>Date</th>
                 <th>Amount</th>
-                <th>purpose</th>
+                <th>Status</th>
+{{--                <th>purpose</th>--}}
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Aug 22, 2018</td>
-                <td>$20</td>
-                <td>Subcribtion</td>
-            </tr>
+            @foreach($payments as $payment)
+                <tr>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$payment->payment_date}}</td>
+                    <td>${{$payment->amount}}</td>
+                    <td>{{strtoupper($payment->payment_status)}}</td>
+                </tr>
+            @endforeach
+
             </tbody>
         </table>
     </div>

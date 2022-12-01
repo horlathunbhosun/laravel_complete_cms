@@ -15,7 +15,19 @@ class CreateSubscriptionTransactionsTable extends Migration
     {
         Schema::create('subscription_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('payment_status')->default('pending');
+            $table->float('amount',12,2)->default(0.00);
+            $table->string('transaction_reference');
+            $table->string('description')->nullable();
+            $table->date('payment_date')->nullable()->after('payment_status');
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+
+            $table->timestamps();
+
         });
     }
 

@@ -5,6 +5,7 @@
     <!-- meta data -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>Karnalreads - @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -79,7 +80,8 @@
                 </div>
                 <div class="col-lg-6 col-md-4 col-12">
                     <div class="logo-area text-center logo-xs-mrg">
-                        <a href="/"><img src="/web/img/logo/jsthub.png" alt="logo"  style="height: 100px; border-radius: 30px"/></a>
+                        <a href="/"><img src="/web/img/logo/logonew.png" alt="logo"  style="height: 100px; border-radius: 30px"/></a>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-12">
@@ -114,7 +116,8 @@
                         <nav>
                             <ul>
                                 <li class="active">
-                                    <a href="#">
+                                    <a href="{{url('/')}}">
+
                                         Home
                                     </a>
                                 </li>
@@ -125,7 +128,7 @@
                                 @endphp
                                 @foreach($categories as $category)
                                 <li>
-                                    <a href="#">
+                                    <a href="product-details.html">
                                         {{$category->title}}
                                     </a>
                                 </li>
@@ -162,21 +165,38 @@
                         <nav id="mobile-menu-active">
                             <ul id="nav">
                                 <li>
-                                    <a href="#">Home</a>
-                                </li>
+                                    <a href="{{url('/')}}">Home</a>
+
+                                @php
+                                    $categories = App\Category::paginate(3);
+                                @endphp
+                                @foreach($categories as $category)
+                                    <li>
+                                        <a href="product-details.html">
+                                            {{$category->title}}
+                                        </a>
+                                    </li>
+                                @endforeach
+{{--                                <li>--}}
+{{--                                    <a href="product-details.html">--}}
+{{--                                        New Arrival--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="product-details.html">--}}
+{{--                                        Category 1--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="product-details.html">--}}
+{{--                                        Category 2--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+
                                 <li>
-                                    <a href="#">
-                                        New Arrival
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Category 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Category 2
+
+                                    <a href="{{route('user.membership')}}">
+                                        Membership
                                     </a>
                                 </li>
                             </ul>

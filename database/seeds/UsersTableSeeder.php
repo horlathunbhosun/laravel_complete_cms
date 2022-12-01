@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Ola olu',
                 'slug' => 'ola-olu',
-
+                'user_type' => 'admin',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('secret'),
                 'bio'  =>  $faker->text(rand(250, 350))
@@ -31,6 +31,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Ola olujimi',
                 'slug' => 'ola-jimi',
+                'user_type' => 'users',
                 'email' => 'olujimi@example.com',
                 'password' => bcrypt('secret'),
                 'bio'  =>  $faker->text(rand(250, 350))
@@ -39,6 +40,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Ola olulode',
                 'slug' => 'ola-lode',
+                'user_type' => 'users',
                 'email' => 'olulode@example.com',
                 'password' => bcrypt('secret'),
                 'bio'  =>  $faker->text(rand(250, 350))
@@ -47,6 +49,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Ola olulodemide',
                 'slug' => 'ola-loded',
+                'user_type' => 'users',
                 'email' => 'olulodedd@example.com',
                 'password' => bcrypt('secret'),
                 'bio'  =>  $faker->text(rand(250, 350))

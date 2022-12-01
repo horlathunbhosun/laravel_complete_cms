@@ -45,6 +45,8 @@ Route::prefix('user')->group(function (){
     Route::post('/register', 'AuthenticationController@register')->name('user.register');
     Route::post('/verify', 'AuthenticationController@verify')->name('user.verify');
     Route::post('/login', 'AuthenticationController@loginUser')->name('user.login');
+    Route::get('/payment', [\App\Http\Controllers\SubscriptionPaymentController::class,'callback']);
+
 
 
 });
@@ -52,11 +54,15 @@ Route::prefix('user')->group(function (){
 
 Route::prefix('user')->middleware('auth.user')->group(function (){
     Route::get('/dashboard', 'UserDashboardController@dashboard')->name('user.dashboard');
+    Route::post('/membership', 'SubscriptionPaymentController@store')->name('user.subscription');
+
     Route::patch('/profile', 'AuthenticationController@updateUser')->name('user.profile.update');
 
 });
 
 Auth::routes();
+
+
 
 Route::get('/home', 'Backend\HomeController@index')->name('home');
 

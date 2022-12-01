@@ -17,6 +17,8 @@ class UserAuth
     public function handle($request, Closure $next)
     {
         $user = Auth::user()->user_type;
+//        dd($user);
+
         if(!$user == 'users' ){
             $notification = array(
                 'message' => 'Hey! You are not authorized to access this page.',
