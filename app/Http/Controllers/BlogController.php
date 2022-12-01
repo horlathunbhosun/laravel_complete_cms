@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PaymentPlan;
 use App\Post;
 use App\User;
 use App\Category;
@@ -14,7 +15,6 @@ class BlogController extends Controller
 {
     protected $limit = 3;
     public function index(){
-        // \DB::enableQueryLog();
           $posts = Post::with('author')
                     ->LastestFirst()
                     ->published()
@@ -22,15 +22,23 @@ class BlogController extends Controller
 
 //                var_dump($posts);
 
+//        $categories = Category::paginate(3);
 
-            // return Inertia::render('HomeComponent');
-           return view('frontend.home.index', compact('posts'));
-        // dd(\DB::getQueryLog());
+
+           return view('frontend.home.index');
+    }
+
+
+    public function membership()
+    {
+
+        $payment_plans = PaymentPlan::all();
+        return view('frontend.membership.membership',compact('payment_plans'));
     }
 
 
 
-    
+
 
     public function category(Category $category){
 

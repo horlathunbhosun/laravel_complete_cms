@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Mail\SendVerificationMail;
 use App\Mail\VerificationCodeMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -174,5 +175,45 @@ class AuthenticationController extends Controller
     public function generateRandomUsername(){
             $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return substr(str_shuffle($chars),0,8);
+    }
+
+
+    public function updateUser(Request $request){
+
+        $user_detail = User::where('id',Auth::id())->first();
+        if(!$user_detail){
+            $notification = array(
+                'message' =>'No User Found',
+                'alert-type' => 'error'
+            );
+
+            return back()->with($notification);
+        }
+
+        $user_detail->name =  $request->fullName;
+        $user_detail->email = $request->email;
+        $user_detail->username = $request->userName;
+
+        if($request->old_password){
+            if(!Hash::check($request->old_password,$user_detail->password)){
+                $notification = array(
+                    'message' =>'No User Found',
+                    'alert-type' => 'error'
+                );
+
+                return back()->with($notification);
+            }
+
+            $user_detail->password = $request->password;
+        }
+        $user_detail->save();
+
+        $notification = array(
+            'message' =>'Account Info Updated successful',
+            'alert-type' => 'success'
+        );
+
+        return  back()->with($notification);
+
     }
 }
