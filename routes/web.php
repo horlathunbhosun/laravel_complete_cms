@@ -48,12 +48,14 @@ Route::prefix('user')->group(function (){
     Route::get('/payment', [\App\Http\Controllers\SubscriptionPaymentController::class,'callback']);
 
 
+
 });
 
 
 Route::prefix('user')->middleware('auth.user')->group(function (){
     Route::get('/dashboard', 'UserDashboardController@dashboard')->name('user.dashboard');
     Route::post('/membership', 'SubscriptionPaymentController@store')->name('user.subscription');
+
     Route::patch('/profile', 'AuthenticationController@updateUser')->name('user.profile.update');
 
 });

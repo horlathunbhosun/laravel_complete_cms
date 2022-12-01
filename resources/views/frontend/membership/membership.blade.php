@@ -59,6 +59,9 @@
     }
 </style>
 
+
+
+
 @section('content')
     <!-- breadcrumbs-area-start -->
     <div class="breadcrumbs-area mb-70">
@@ -141,6 +144,33 @@
                              </div>
                              @endforeach
                          </div>
+
+                        <div class="compare-page-content-wrap">
+                            <div class="compare-table table-responsive">
+                                <table class="table table-bordered mb-0">
+                                    <tbody>
+                                    @foreach($payment_plans as $plan)
+                                    <tr>
+                                        <td class="first-column">Price</td>
+                                        <td class="pro-price">{{$plan->amount_usd}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-column">Coin in value</td>
+                                        <td class="pro-color">{{$plan->coin_value}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-column">Bonus</td>
+                                        <td class="pro-stock">{{$plan->bonus}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="first-column"></td>
+                                        <td><a href="cart.html" class="btn btn-sqr">Pay</a></td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                         <!-- Compare Page Content End -->
                     </div>
                 </div>

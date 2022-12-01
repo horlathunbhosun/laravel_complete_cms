@@ -20,6 +20,7 @@
                     <td>{{strtoupper($payment->payment_status)}}</td>
                 </tr>
             @endforeach
+
             </tbody>
         </table>
     </div>

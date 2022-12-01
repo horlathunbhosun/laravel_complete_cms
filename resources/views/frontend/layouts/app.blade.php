@@ -5,7 +5,8 @@
     <!-- meta data -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>JustEroticaHub - @yield('title')</title>
+
+    <title>Karnalreads - @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--font-family-->
@@ -80,6 +81,7 @@
                 <div class="col-lg-6 col-md-4 col-12">
                     <div class="logo-area text-center logo-xs-mrg">
                         <a href="/"><img src="/web/img/logo/logonew.png" alt="logo"  style="height: 100px; border-radius: 30px"/></a>
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-12">
@@ -115,6 +117,7 @@
                             <ul>
                                 <li class="active">
                                     <a href="{{url('/')}}">
+
                                         Home
                                     </a>
                                 </li>
@@ -163,7 +166,6 @@
                             <ul id="nav">
                                 <li>
                                     <a href="{{url('/')}}">Home</a>
-                                </li>
 
                                 @php
                                     $categories = App\Category::paginate(3);
@@ -192,6 +194,7 @@
 {{--                                </li>--}}
 
                                 <li>
+
                                     <a href="{{route('user.membership')}}">
                                         Membership
                                     </a>
