@@ -51,9 +51,9 @@
                                         <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
                                             Dashboard</a>
                                             @if (auth()->user()->user_type == 'admin')
-                                            <a href="#" data-toggle="tab"><i class="fa fa-book"></i>
+                                            <a href="#books" data-toggle="tab"><i class="fa fa-book"></i>
                                                 Books</a>
-                                            @endif
+                                             @endif 
                                         <a href="#library" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i>
                                             My Library</a>
                                         <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i>
@@ -89,6 +89,12 @@
                                             </div>
                                         </div>
                                         <!-- Single Tab Content End -->
+
+                                        <!-- Single Tab Content Start -->
+                                        <div class="tab-pane fade" id="books" role="tabpanel">
+                                            @include('frontend.accounts.include.books')
+                                         </div>
+                                         <!-- Single Tab Content End -->
 
                                         <!-- Single Tab Content Start -->
                                         <div class="tab-pane fade" id="library" role="tabpanel">
