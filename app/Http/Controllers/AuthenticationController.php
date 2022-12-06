@@ -149,6 +149,12 @@ class AuthenticationController extends Controller
                     'alert-type' => 'success'
                 );
                 return  redirect('/')->with($notification);
+            } else {
+                $notification = array(
+                    'message' =>'Welcome! login successful',
+                    'alert-type' => 'success'
+                );
+                return  redirect(route('user.dashboard'))->with($notification);
             }
         }else{
             $notification = array(

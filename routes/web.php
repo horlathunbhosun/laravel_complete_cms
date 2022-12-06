@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\BookController;
+
 Route::get('/',  [
         'uses' => 'BlogController@index',
         'as' => 'blog'
@@ -57,6 +59,10 @@ Route::prefix('user')->middleware('auth.user')->group(function (){
     Route::post('/membership', 'SubscriptionPaymentController@store')->name('user.subscription');
 
     Route::patch('/profile', 'AuthenticationController@updateUser')->name('user.profile.update');
+
+    Route::get('/add-book', [\App\Http\Controllers\BookController::class,'index']);
+    Route::post('/add_book', [\App\Http\Controllers\BookController::class,'addBook'])->name('add.book');
+
 
 });
 

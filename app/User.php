@@ -66,4 +66,8 @@ class User extends Authenticatable
     public function subscriptions(){
         return $this->hasMany('App\Subscription', 'user_id');
     }
+
+    public function books(){
+        return $this->hasMany(Book::class, 'author_id');
+    }
 }
