@@ -15,10 +15,12 @@ class CreateChaptersTable extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('book_id')->unsigned();
             $table->string('chapter_number')->nullable();
             $table->string('chapter_title')->nullable();
             $table->longText('chapter_body')->nullable();
             $table->timestamp('published_at')->nullable();
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

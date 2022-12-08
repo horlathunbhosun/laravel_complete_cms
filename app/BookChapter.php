@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class BookChapter extends Model
+class BookChapter extends Pivot
 {
     use HasFactory;
 

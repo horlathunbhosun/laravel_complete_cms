@@ -60,9 +60,6 @@ Route::prefix('user')->middleware('auth.user')->group(function (){
 
     Route::patch('/profile', 'AuthenticationController@updateUser')->name('user.profile.update');
 
-    Route::get('/add-book', [\App\Http\Controllers\BookController::class,'index']);
-    Route::post('/add_book', [\App\Http\Controllers\BookController::class,'addBook'])->name('add.book');
-
 
 });
 
@@ -93,7 +90,17 @@ Route::get('/backend/users/confirm/{users}', [
     'as' => 'backend.user.confirm'
 ]);
 
+Route::get('/add-book', [\App\Http\Controllers\BookController::class,'create'])->name('create.book');
+Route::post('/add_book', [\App\Http\Controllers\BookController::class,'addBook'])->name('add.book');
+Route::get('/books', [\App\Http\Controllers\BookController::class,'index'])->name('view.books');
+Route::get('/book/{book}', [\App\Http\Controllers\BookController::class,'editBook'])->name('edit.books');
+Route::get('/view-book/{book}', [\App\Http\Controllers\BookController::class,'showBook'])->name('view.single.book.');
+Route::put('/books/{book}', [\App\Http\Controllers\BookController::class,'updateBook'])->name('update.book');
+Route::delete('book/{book}', [\App\Http\Controllers\BookController::class,'delete'])->name('delete.book');
 
-
-
+Route::get('/book/{book}/add-chapter', [\App\Http\Controllers\ChapterController::class,'createChapter'])->name('create.chapter');
+Route::post('/book/{book}/add_chapter', [\App\Http\Controllers\ChapterController::class,'addChapter'])->name('add.chapter');
+Route::get('/view-chapter/{chapter}', [\App\Http\Controllers\ChapterController::class,'editChapter'])->name('edit.chapter');
+Route::put('/update-chapter/{chapter}', [\App\Http\Controllers\ChapterController::class,'updateChapter'])->name('update.chapter');
+Route::delete('/book/{book}/chapter/{chapter}', [\App\Http\Controllers\ChapterController::class,'deleteChapter'])->name('delete.chapter');
 

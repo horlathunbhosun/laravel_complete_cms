@@ -15,7 +15,7 @@ class Book extends Model
 
     public function chapter()
     {
-        return $this->belongsToMany(Chapter::class)->using(BookChapter::class);
+        return $this->belongsToMany(Chapter::class)->orderBy('chapter_number')->using(BookChapter::class);
     }
 
     public function category()

@@ -18,7 +18,7 @@ class CreateBooksTable extends Migration
             $table->bigInteger('author_id')->unsigned();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->longText('abstract')->nullable();
+            $table->longText('body')->nullable();
             $table->string('image')->nullable();
             $table->integer('view_count')->default(0)->nullable();
             $table->timestamps();
