@@ -38,24 +38,19 @@
 
               <div class="box-body ">
                         <div class="form-group @error('title') is-invalid @enderror">
-                            {!! Form::label('title') !!}
-                            {!! Form::text('title', null, ['class'=>'form-control ', 'placeholder'=>'Enter The Title']) !!}
+                            <label for="text">Title</label>
+                            <input class="ckeditor form-control" value="{{$book->title}}" placeholder="Enter The Title" name="title" rows="10" cols="80">
 
                             @error('title')
                                 <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group excerpt @error('slug') is-invalid @enderror">
-                            {!! Form::label('slug') !!}
-                            {!! Form::textarea('slug', null, ['class'=>'form-control','placeholder'=>'Enter The Slug']) !!}
-                            @error('slug')
-                                <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
-                            @enderror
-                        </div>
 
                         <div class="form-group @error('body') is-invalid @enderror ">
-                            {!! Form::label('body') !!}
-                            {!! Form::textarea('body', null, ['class'=>'form-control','placeholder'=>'Enter The Body']) !!}
+                            <label for="text">Body</label>
+                            <textarea class="ckeditor form-control" placeholder="Enter The Body" name="body" rows="10" cols="80">
+                                {{$book->body}}
+                            </textarea>
                             @error('body')
                                 <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                             @enderror
@@ -116,7 +111,7 @@
                       <div class="form-group @error('image') is-invalid @enderror ">
                         <div class="fileinput fileinput-new" data-provides="fileinput">
                             <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                              <img src="{{($book->image) ? $book->image : 'http://placehold.it/200x150&text=No+Image' }}" alt="">
+                              <img src="{{($book->image) ? asset('files') . '/' . $book->image : 'http://placehold.it/200x150&text=No+Image' }}" alt="">
                             </div>
                             <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                             <div>
@@ -139,6 +134,12 @@
     </section>
     <!-- /.content -->
   </div>
+  <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection
 
 @include('backend.blog.script')

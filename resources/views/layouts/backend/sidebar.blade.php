@@ -20,7 +20,7 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li class="treeview">
+        {{-- <li class="treeview">
           <a href="#">
             <i class="fa fa-pencil"></i>
             <span>Blog</span>
@@ -32,7 +32,7 @@
             <li><a href="{{ route('blog.index')}}"><i class="fa fa-circle-o"></i> All Posts</a></li>
             <li><a href="{{ route('blog.create')}}"><i class="fa fa-circle-o"></i> Add New</a></li>
           </ul>
-        </li>
+        </li> --}}
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pencil"></i>

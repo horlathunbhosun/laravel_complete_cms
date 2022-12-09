@@ -1,7 +1,7 @@
 @extends('layouts.backend.main')
 
 
-@section('title', 'MyBlog | Add New Posts')
+@section('title', 'MyBooks | Add New Book')
 
 
 @section('content')
@@ -36,24 +36,18 @@
 
               <div class="box-body ">
                         <div class="form-group @error('title') is-invalid @enderror">
-                            {!! Form::label('title') !!}
-                            {!! Form::text('title', null, ['class'=>'form-control ', 'placeholder'=>'Enter The Title']) !!}
+                            <label for="text">Title</label>
+                            <input class="ckeditor form-control" placeholder="Enter The Title" name="title" rows="10" cols="80">
 
                             @error('title')
                                 <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="form-group excerpt @error('slug') is-invalid @enderror">
-                            {!! Form::label('slug') !!}
-                            {!! Form::textarea('slug', null, ['class'=>'form-control', 'placeholder'=>'Enter The Slug']) !!}
-                            @error('slug')
-                                <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
-                            @enderror
-                        </div>
 
                         <div class="form-group @error('body') is-invalid @enderror ">
-                            {!! Form::label('body') !!}
-                            {!! Form::textarea('body', null, ['class'=>'form-control', 'placeholder'=>'Enter The Body']) !!}
+                            <label for="text">Body</label>
+                            <textarea class="ckeditor form-control" placeholder="Enter The Body" name="body" rows="10" cols="80">
+                            </textarea>
                             @error('body')
                                 <span class="label label-danger" style="color:red;" role="alert" >{{ $message }}</span>
                             @enderror
@@ -136,6 +130,13 @@
     </section>
     <!-- /.content -->
   </div>
+
+  <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
 @endsection
 
 @include('backend.blog.script')

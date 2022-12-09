@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Chapter;
 use App\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +30,6 @@ class BookController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
-            'slug' => 'required|string',
             'body' => 'required|string',
             'image' => 'required|file',
             'category_id' => 'required|string'
@@ -44,7 +44,7 @@ class BookController extends Controller
         }
         $validExtensions = ["png", "jpg", "jpeg"];
         if (!in_array($request->image->extension(), $validExtensions)) {
-            return redirect('/user/dashboard')->with([
+            return redirect('/home')->with([
                 'message' => 'Invalid File Extension',
                 'alert-type' =>'error'
             ]);
@@ -56,7 +56,7 @@ class BookController extends Controller
          Book::create([
             'title' => $request->title,
             'author_id' => auth()->id(),
-            'slug' => $request->slug,
+            'slug' => Str::slug($request->title),
             'body' => $request->body,
             'image' => $bookext,
             'category_id' => $request->category_id,
@@ -80,7 +80,6 @@ class BookController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
-            'slug' => 'required|string',
             'body' => 'required|string',
             'image' => 'required|file',
             'category_id' => 'required|string'
@@ -95,7 +94,7 @@ class BookController extends Controller
         }
         $validExtensions = ["png", "jpg", "jpeg"];
                 if (!in_array($request->image->extension(), $validExtensions)) {
-                    return redirect('/user/dashboard')->with([
+                    return redirect('/home')->with([
                         'message' => 'Invalid File Extension',
                         'alert-type' =>'error'
                     ]);
@@ -106,7 +105,7 @@ class BookController extends Controller
         $file->move($dest,$bookext);
 
         $book->title = $request->title;
-        $book->slug = $request->slug;
+        $book->slug = Str::slug($request->title);
         $book->body = $request->body;
         $book->image = $bookext;
         $book->category_id = $request->category_id;
