@@ -26,6 +26,14 @@ class BookController extends Controller
     {
         return view('backend.books.show', ['book' => $book]);
     }
+    public function viewBook(Book $book)
+    {
+        return view('frontend.home.book-details', ['book' => $book]);
+    }
+    public function viewChapter(Book $book, Chapter $chapter)
+    {
+        return view('frontend.home.chapter-details', ['chapter' => $chapter, 'book' => $book]);
+    }
     public function addBook(Request $request)
     {
         $validator = Validator::make($request->all(), [

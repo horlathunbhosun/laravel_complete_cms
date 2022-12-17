@@ -14,7 +14,7 @@
                 <div class="product-wrapper">
                     <div class="product-img">
                         @forelse($featuredBooks as $book)
-                        <a href="#">
+                        <a href="/frontend/view-book/{{$book->id}}">
                             <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" class="primary" />
                         </a>
                         {{-- <div class="quick-view">
@@ -35,7 +35,7 @@
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
                             </ul>
                         </div>
-                        <h4><a href="#">{{$book->title}}</a></h4>
+                        <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4>
                         <h5><i>{{$book->author->name}}</a></i></h5>
                         <div class="product-price">
                         </div>

@@ -55,7 +55,6 @@ class BlogController extends Controller
 
 
 
-
     public function category(Category $category){
 
         $categoryName = $category->title;

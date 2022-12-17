@@ -29,10 +29,10 @@
                             <div class="single-bestseller mb-25">
                                 @forelse($newArrivalBooks as $book)
                                 <div class="bestseller-img">
-                                    <a href="#"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
+                                    <a href="/view-book/{{$book->id}}"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
                                 </div>
                                 <div class="bestseller-text text-center">
-                                    <h3> <a href="#">{{$book->title}}</a></h3>
+                                    <h3> <a href="/view-book/{{$book->id}}">{{$book->title}}</a></h3>
                                     <h4> <i>{{$book->author->name}}</i></h4>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                             <div class="product-img">
                                 <div class="product-img">
                                     @forelse($completedBooks as $book)
-                                    <a href="#">
+                                    <a href="/view-book/{{$book->id}}">
                                         <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" class="primary" />
                                     </a>
                                     {{-- <div class="quick-view">
@@ -95,7 +95,7 @@
                                             <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         </ul>
                                     </div>
-                                    <h4><a href="#">{{$book->title}}</a></h4>
+                                    <h4><a href="/view-book/{{$book->id}}">{{$book->title}}</a></h4>
                                     <h5><i>{{$book->author->name}}</a></i></h5>
                                     <div class="product-price">
                                     </div>
@@ -140,7 +140,7 @@
                             <div class="single-most-product bd mb-18">
                                 @forelse($featuredBooks as $book)
                                 <div class="most-product-img">
-                                    <a href="#"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
+                                    <a href="/view-book/{{$book->id}}"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
                                 </div>
                                 <div class="most-product-content">
                                     <div class="product-rating">
@@ -152,7 +152,7 @@
                                             <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         </ul>
                                     </div>
-                                    <h4><a href="#">{{$book->title}}</a></h4>
+                                    <h4><a href="/view-book/{{$book->id}}">{{$book->title}}</a></h4>
                                     <h5><i>{{$book->author->name}}</i></h5>
 
                                     {{-- <div class="product-price">
@@ -180,7 +180,7 @@
                             <div class="single-most-product bd mb-18">
                                 <div class="most-product-img">
                                     @forelse($newArrivalBooks as $book)
-                                    <a href="#"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
+                                    <a href="/view-book/{{$book->id}}"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
                                 </div>
                                 <div class="most-product-content">
                                     <div class="product-rating">
@@ -192,7 +192,7 @@
                                             <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         </ul>
                                     </div>
-                                    <h4><a href="#">{{$book->title}}</a></h4>
+                                    <h4><a href="/view-book/{{$book->id}}">{{$book->title}}</a></h4>
                                     <h5><i>{{$book->author->name}}</i></h5>
 
                                     {{-- <div class="product-price">
@@ -220,7 +220,7 @@
                             <div class="single-most-product bd mb-18">
                                 <div class="most-product-img">
                                     @forelse($completedBooks as $book)
-                                    <a href="#"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
+                                    <a href="/view-book/{{$book->id}}"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
                                 </div>
                                 <div class="most-product-content">
                                     <div class="product-rating">
@@ -232,7 +232,7 @@
                                             <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         </ul>
                                     </div>
-                                    <h4><a href="#">{{$book->title}}</a></h4>
+                                    <h4><a href="/view-book/{{$book->id}}">{{$book->title}}</a></h4>
                                     <h5><i>{{$book->author->name}}</i></h5>
 
                                     {{-- <div class="product-price">

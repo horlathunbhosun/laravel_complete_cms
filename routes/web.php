@@ -90,6 +90,10 @@ Route::get('/backend/users/confirm/{users}', [
     'as' => 'backend.user.confirm'
 ]);
 
+Route::get('/frontend/view-book/{book}', [\App\Http\Controllers\BookController::class,'viewBook'])->name('view.book.frontend');
+Route::get('/frontend/book/{book}/chapter/{chapter}', [\App\Http\Controllers\BookController::class,'viewChapter'])->name('view.chapter.frontend');
+
+
 Route::get('/add-book', [\App\Http\Controllers\BookController::class,'create'])->name('create.book');
 Route::post('/add_book', [\App\Http\Controllers\BookController::class,'addBook'])->name('add.book');
 Route::get('/books', [\App\Http\Controllers\BookController::class,'index'])->name('view.books');
