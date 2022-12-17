@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\PaymentPlan;
+use App\Book;
 use App\Post;
 use App\User;
 use App\Category;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\PaymentPlan;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 
@@ -23,9 +24,24 @@ class BlogController extends Controller
 //                var_dump($posts);
 
 //        $categories = Category::paginate(3);
+        $featuredBooksCategoryId = Category::where('title', 'Featured')->pluck('id');
+        $featuredBooks = Book::where('category_id', $featuredBooksCategoryId)
+                                ->orderBy('created_at', 'desc')
+                                ->simplePaginate($this->limit);
+        $newArrivalBooksCategoryId = Category::where('title', 'New Arrival')->pluck('id');
+        $newArrivalBooks = Book::where('category_id', $newArrivalBooksCategoryId)
+                                ->orderBy('created_at', 'desc')    
+                                ->simplePaginate($this->limit);
+        $completedBooksCategoryId = Category::where('title', 'Completed Books')->pluck('id');
+        $completedBooks = Book::where('category_id', $completedBooksCategoryId)
+                                ->orderBy('created_at', 'desc')
+                                ->simplePaginate($this->limit);
 
-
-           return view('frontend.home.index');
+        return view('frontend.home.index', [
+            'featuredBooks' => $featuredBooks,
+            'newArrivalBooks' => $newArrivalBooks,
+            'completedBooks' => $completedBooks
+        ]);
     }
 
 

@@ -43,7 +43,7 @@
         </div>
         <div class="box-body">
           <h4>Abstract:</h4>
-          <p>{{$book->abstract}}</p>
+          <p>{{$book->body}}</p>
         </div>
         <!-- /.box-body -->
         @forelse($book->chapter as $chapter)
