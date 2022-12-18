@@ -44,7 +44,20 @@ class CategoriesTableSeeder extends Seeder
                     'slug' =>  'social-marketing'
                 ],
 
+                [
+                    'title' => 'Featured',
+                    'slug' =>  'featured'
+                ],
 
+                [
+                    'title' => 'New Arrival',
+                    'slug' =>  'new-arrival'
+                ],
+
+                [
+                    'title' => 'Completed Books',
+                    'slug' =>  'completed-books'
+                ],
         ]);
 
         //update the posts data

@@ -16,11 +16,11 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li>
-          <a href="#">
+          <a href="/home">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li class="treeview">
+        {{-- <li class="treeview">
           <a href="#">
             <i class="fa fa-pencil"></i>
             <span>Blog</span>
@@ -31,6 +31,19 @@
           <ul class="treeview-menu">
             <li><a href="{{ route('blog.index')}}"><i class="fa fa-circle-o"></i> All Posts</a></li>
             <li><a href="{{ route('blog.create')}}"><i class="fa fa-circle-o"></i> Add New</a></li>
+          </ul>
+        </li> --}}
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pencil"></i>
+            <span>Books</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ route('view.books')}}"><i class="fa fa-circle-o"></i> All Books</a></li>
+            <li><a href="{{ route('create.book')}}"><i class="fa fa-circle-o"></i> Add New Book</a></li>
           </ul>
         </li>
          @if(check_user_permissions(request(), "Categories@index" ))

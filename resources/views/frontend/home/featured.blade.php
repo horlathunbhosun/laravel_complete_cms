@@ -13,16 +13,17 @@
                 <!-- single-product-start -->
                 <div class="product-wrapper">
                     <div class="product-img">
-                        <a href="#">
-                            <img src="/web/img/product/1.jpg" alt="book" class="primary" />
+                        @forelse($featuredBooks as $book)
+                        <a href="/frontend/view-book/{{$book->id}}">
+                            <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" class="primary" />
                         </a>
-                        <div class="quick-view">
+                        {{-- <div class="quick-view">
                             <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
                                 <i class="fa fa-search-plus"></i>
                             </a>
-                        </div>
-                        <div class="product-flag">
-                        </div>
+                        </div> --}}
+                        {{-- <div class="product-flag">
+                        </div> --}}
                     </div>
                     <div class="product-details text-center">
                         <div class="product-rating">
@@ -34,26 +35,30 @@
                                 <li><a href="#"><i class="fa fa-star"></i></a></li>
                             </ul>
                         </div>
-                        <h4><a href="#">Joust Duffle Bag</a></h4>
+                        <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4>
+                        <h5><i>{{$book->author->name}}</a></i></h5>
                         <div class="product-price">
                         </div>
                     </div>
-                    <div class="product-link">
+                    {{-- <div class="product-link">
                         <div class="product-button">
                             <a href="#" title="Add to cart pt-5">
                                 Add to library
                             </a>
-                        </div>
-                        <div class="add-to-link">
+                        </div> --}}
+                        {{-- <div class="add-to-link">
                             <ul>
                                 <li>
-                                    <a href="details.html" title="Details">
+                                    <a href="#" title="Details">
                                     <i class="fa fa-external-link"></i>
                                 </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
+                    @empty
+                    <h4><a href="#">No Featured Books Yet</a></h4>
+                    @endforelse
                 </div>
                 <!-- single-product-end -->
             </div>
