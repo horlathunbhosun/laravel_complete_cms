@@ -36,9 +36,15 @@
                             <h3>{{$book->title}}</h3>
                         </div>
                         <div class="blog-single-content">
-                            <p>{{$book->body}}</p>
+                            <p>{!! $book->body !!}</p>
                             @forelse($book->chapter as $chapter)
-                                <blockquote class="blockstyle"><a href="/frontend/book/{{$book->id}}/chapter/{{$chapter->id}}">Chapter: {{$chapter->chapter_number}}</a></blockquote>
+                                <blockquote class="blockstyle">
+                                    @if(auth()->user())
+                                        <a href="/frontend/book/{{$book->id}}/chapter/{{$chapter->id}}">Chapter: {{$chapter->chapter_number}}</a>
+                                    @else
+                                        <a href="/frontend/book/{{$book->id}}/chapter/{{$chapter->id}}" onclick="return false;">Chapter: {{$chapter->chapter_number}}</a>
+                                    @endif
+                                </blockquote>
                             @empty
                             <blockquote class="blockstyle">No Chapters Yet</blockquote>
                             @endforelse

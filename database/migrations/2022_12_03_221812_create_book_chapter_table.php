@@ -15,8 +15,8 @@ class CreateBookChapterTable extends Migration
     {
         Schema::create('book_chapter', function (Blueprint $table) {
             $table->id();
-            $table->string('book_id')->references(['id'])->on('users')->onDelete('CASCADE');
-            $table->string('chapter_id')->references(['id'])->on('tasks')->onDelete('CASCADE');
+            $table->string('book_id')->references(['id'])->on('books')->onDelete('CASCADE');
+            $table->string('chapter_id')->references(['id'])->on('chapters')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
