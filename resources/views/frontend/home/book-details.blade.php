@@ -42,7 +42,7 @@
                                     @if(auth()->user())
                                         <a href="/frontend/book/{{$book->id}}/chapter/{{$chapter->id}}">Chapter: {{$chapter->chapter_number}}</a>
                                     @else
-                                        <a href="/frontend/book/{{$book->id}}/chapter/{{$chapter->id}}" onclick="return false;">Chapter: {{$chapter->chapter_number}}</a>
+                                        <a href="#" onclick="return false;">Chapter: {{$chapter->chapter_number}}</a>
                                     @endif
                                 </blockquote>
                             @empty
