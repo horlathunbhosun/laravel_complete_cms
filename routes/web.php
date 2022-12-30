@@ -93,7 +93,6 @@ Route::get('/backend/users/confirm/{users}', [
 Route::post('/frontend/add-to-library/{book}', [\App\Http\Controllers\BookController::class,'addToLibrary']);
 
 Route::get('/frontend/view-book/{book}', [\App\Http\Controllers\BookController::class,'viewBook'])->name('view.book.frontend');
-// Route::post('/add-to-library/{book}', [\App\Http\Controllers\BookController::class,'addToLibrary']);
 Route::get('/frontend/book/{book}/chapter/{chapter}', [\App\Http\Controllers\BookController::class,'viewChapter'])->name('view.chapter.frontend');
 
 

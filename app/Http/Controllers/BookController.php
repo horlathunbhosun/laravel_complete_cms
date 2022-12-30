@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Chapter;
-use App\Category;
 use App\Library;
+use App\Category;
+use App\WalletCoin;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -33,7 +34,48 @@ class BookController extends Controller
     }
     public function viewChapter(Book $book, Chapter $chapter)
     {
-        return view('frontend.home.chapter-details', ['chapter' => $chapter, 'book' => $book]);
+        $walletCoins = WalletCoin::where('user_id', auth()->user()->id)->select('coins', 'bonus_coin')->first();
+        // dd($walletCoins->coins);
+        if($walletCoins->coins<=0){
+            $walletBonusCoin = $walletCoins->bonus_coin;
+            $charges = $walletBonusCoin-2;
+            if($charges<0) {
+                $notification = array(
+                    'message' => 'You do not have enough coins',
+                    'alert-type' => 'error'
+                );
+                return back()->with($notification);
+            }
+            WalletCoin::where('user_id', auth()->user()->id)->update([
+                'bonus_coin' => $charges
+            ]);
+            return view('frontend.home.chapter-details', ['chapter' => $chapter, 'book' => $book]);
+        } elseif ($walletCoins->coins > 0) {
+            $walletCoin = $walletCoins->coins;
+            $charges = $walletCoin-2;
+            if($charges<0) {
+                $notification = array(
+                    'message' => 'You do not have enough coins',
+                    'alert-type' => 'error'
+                );
+                return back()->with($notification);
+            }
+            WalletCoin::where('user_id', auth()->user()->id)->update([
+                'coins' => $charges
+            ]);
+            return view('frontend.home.chapter-details', ['chapter' => $chapter, 'book' => $book]);
+        } elseif ($walletCoins->coins <= 0 && $walletCoins->bonus_coin <= 0) {
+            $notification = array(
+                'message' => 'You do not have enough coins',
+                'alert-type' => 'error'
+            );
+            return back()->with($notification);
+        }
+        $notification = array(
+            'message' => 'Unauthorized',
+            'alert-type' => 'error'
+        );
+        return back()->with($notification);
     }
     public function addBook(Request $request)
     {
