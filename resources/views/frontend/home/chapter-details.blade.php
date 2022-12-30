@@ -22,7 +22,7 @@
                                 <p>Posted by:
                                     <a href="#"><span>{{$book->author->name}}</span></a>
                                 </p>
-                                <span>{{$book->published_at}}</span>
+                                <span>{{date('d-m-Y', strtotime($book->published_at))}}</span>
                             </div>
                         </div>
                         <div class="author-right">
