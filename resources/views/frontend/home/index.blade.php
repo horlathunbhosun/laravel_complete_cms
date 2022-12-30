@@ -86,7 +86,7 @@
                     </div>
                     <div class="product-active-2 owl-carousel">
                         <div class="product-total-2">
-                            @forelse($featuredBooks as $book)
+                            @forelse($featuredBooks->take(3) as $book)
                             <div class="single-most-product bd mb-18">
                                 <div class="most-product-img">
                                     <a href="/frontend/view-book/{{$book->id}}">
@@ -125,7 +125,7 @@
                     </div>
                     <div class="product-active-2 owl-carousel">
                         <div class="product-total-2">
-                            @forelse($newArrivalBooks as $book)
+                            @forelse($newArrivalBooks->take(3) as $book)
                             <div class="single-most-product bd mb-18">
                                 <div class="most-product-img">
                                     <a href="/frontend/view-book/{{$book->id}}">
@@ -164,7 +164,7 @@
                     </div>
                     <div class="product-active-2 owl-carousel">
                         <div class="product-total-2">
-                            @forelse($completedBooks as $book)
+                            @forelse($completedBooks->take(3) as $book)
                             <div class="single-most-product bd mb-18">
                                 <div class="most-product-img">
                                     <a href="/frontend/view-book/{{$book->id}}">

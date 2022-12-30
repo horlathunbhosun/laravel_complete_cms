@@ -31,6 +31,14 @@
                     <div class="blog-img mb-30">
                         <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="blog" />
                     </div>
+                    @if(auth()->user())
+                    <div class="pull-right">
+                        <form method="POST" action="/frontend/add-to-library/{{$book->id}}" enctype="multipart/form-data">
+                            @csrf
+                            <button class="btn btn-sqr" type="submit">Add To Library</button>
+                        </form>
+                    </div>
+                    @endif
                     <div class="single-blog-content">
                         <div class="single-blog-title">
                             <h3>{{$book->title}}</h3>

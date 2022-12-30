@@ -65,7 +65,7 @@
                                         <a href="{{url('/logout')}}"
 {{--                                           class="btn btn-default btn-flat"--}}
                                            onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit()"><i class="fa fa-sign-out"></i> Logout
+                                        document.getElementById('logout-form').submit()"><i class="fa fa-sign-out"></i> Logout
                                         </a>
 
                                         <form id="logout-form" action="{{url('/logout')}}" method="POST" style="display: none;">
@@ -81,6 +81,15 @@
                                         <!-- Single Tab Content Start -->
                                         <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
                                             <div class="myaccount-content">
+                                                @forelse($walletCoins as $walletCoins)
+                                                <div class="pull-right">
+                                                    <p>Coins: {{$walletCoins->coins}} Bonus Coins: {{$walletCoins->bonus_coin}}</p>
+                                                </div>
+                                                @empty
+                                                <div class="pull-right">
+                                                    <p>Coins: 0 Bonus Coins: 0</p>
+                                                </div>
+                                                @endforelse
                                                 <h5>Dashboard</h5>
                                                 <div class="welcome">
                                                     <p>Hello, <strong>{{\Illuminate\Support\Facades\Auth::user()->name}}</strong></p>

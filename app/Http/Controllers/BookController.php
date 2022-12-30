@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Chapter;
 use App\Category;
+use App\Library;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -142,5 +143,28 @@ class BookController extends Controller
             'alert-type' => 'success'
         );
         return redirect(route('view.books'))->with($notification);
+    }
+    public function addToLibrary(Book $book)
+    {
+        $user = auth()->user()->id;
+        $book_id = $book->id;
+        $libraryBook = Library::where('book_id', $book_id)->where('user_id', $user)->first();
+        $libraryBookId = (isset($libraryBook)) ? $libraryBook->book_id : null;
+        if($libraryBookId==$book_id){
+            $notification = array(
+                'message' => 'Book is already in Library',
+                'alert-type' => 'error'
+            );
+            return back()->with($notification);
+        }
+        $library =  new Library();
+            $library->user_id = $user;
+            $library->book_id = $book_id;
+        $library->save();
+        $notification = array(
+            'message' => 'Book Added to Library Successfully',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
     }
 }
