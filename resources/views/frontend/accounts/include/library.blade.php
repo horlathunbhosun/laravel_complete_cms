@@ -30,6 +30,8 @@
         <h4><a href="#">No Books Yet</a></h4>
         @endforelse
         </div>
-
+        <div class="d-flex justify-content-center">
+            {!! $library->links() !!}
+        </div>
     <!-- Single book added to  the library section ends -->
 </div>

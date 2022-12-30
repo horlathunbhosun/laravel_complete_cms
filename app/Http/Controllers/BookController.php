@@ -35,9 +35,10 @@ class BookController extends Controller
     public function viewChapter(Book $book, Chapter $chapter)
     {
         $walletCoins = WalletCoin::where('user_id', auth()->user()->id)->select('coins', 'bonus_coin')->first();
-        // dd($walletCoins->coins);
-        if($walletCoins->coins<=0){
-            $walletBonusCoin = $walletCoins->bonus_coin;
+        $walletCoinsValue = (isset($walletCoins)) ? $walletCoins->coins : null;
+        $walletBonusCoinsValue = (isset($walletCoins)) ? $walletCoins->bonus_coin : null;
+        if($walletCoinsValue<=0){
+            $walletBonusCoin = $walletBonusCoinsValue;
             $charges = $walletBonusCoin-2;
             if($charges<0) {
                 $notification = array(
@@ -50,8 +51,8 @@ class BookController extends Controller
                 'bonus_coin' => $charges
             ]);
             return view('frontend.home.chapter-details', ['chapter' => $chapter, 'book' => $book]);
-        } elseif ($walletCoins->coins > 0) {
-            $walletCoin = $walletCoins->coins;
+        } elseif ($walletCoinsValue > 0) {
+            $walletCoin = $walletCoinsValue;
             $charges = $walletCoin-2;
             if($charges<0) {
                 $notification = array(
@@ -64,7 +65,7 @@ class BookController extends Controller
                 'coins' => $charges
             ]);
             return view('frontend.home.chapter-details', ['chapter' => $chapter, 'book' => $book]);
-        } elseif ($walletCoins->coins <= 0 && $walletCoins->bonus_coin <= 0) {
+        } elseif ($walletCoinsValue <= 0 && $walletBonusCoinsValue <= 0) {
             $notification = array(
                 'message' => 'You do not have enough coins',
                 'alert-type' => 'error'

@@ -50,7 +50,7 @@
                                     @if(auth()->user())
                                         <a href="/frontend/book/{{$book->id}}/chapter/{{$chapter->id}}">Chapter: {{$chapter->chapter_number}}</a>
                                     @else
-                                        <a href="#" onclick="return false;">Chapter: {{$chapter->chapter_number}}</a>
+                                        <a href="#" data-toggle="modal" data-target="#exampleModal">Chapter: {{$chapter->chapter_number}}</a>
                                     @endif
                                 </blockquote>
                             @empty
@@ -65,5 +65,26 @@
         </div>
     </div>
 </div>
+
+{{-- Modal --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Unauthenticated</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5>Sign In to proceed</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <a href="{{route('user.signin')}}" type="button" class="btn btn-sqr">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </div>
 <!-- blog-main-area-end -->
 @endsection

@@ -25,7 +25,7 @@ class UserDashboardController extends Controller
             $libraryBookId = $libraryBook->book_id;
             array_push($libraryBookIds, $libraryBookId);
         }
-        $library = Book::whereIn('id', $libraryBookIds)->get();
+        $library = Book::whereIn('id', $libraryBookIds)->latest()->paginate(4);
         // dd($library);
         return view('frontend.accounts.dashboard',[
             'user'=>Auth::user(),
