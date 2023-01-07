@@ -24,36 +24,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-12">
-                    <div class="bestseller-active owl-carousel">
-                            <div class="single-bestseller mb-25">
-                                @forelse($newArrivalBooks as $book)
-                                <div class="bestseller-img">
-                                    <a href="/view-book/{{$book->id}}"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
-                                </div>
-                                <div class="bestseller-text text-center">
-                                    <h3> <a href="/view-book/{{$book->id}}">{{$book->title}}</a></h3>
-                                    <h4> <i>{{$book->author->name}}</i></h4>
-                                </div>
-                            </div>
-                            @empty
-                            <h4>No Books Yet</h4>
-                            @endforelse
-                            {{-- <div class="single-bestseller">
-                                <div class="bestseller-img">
-                                    <a href="#"><img src="/web/img/product/14.jpg" alt="book" /></a>
-                                </div>
-                                <div class="bestseller-text text-center">
-                                    <h3> <a href="#">Impulse Duffle</a></h3>
-                                </div>
-                            </div> --}}
+                @forelse($newArrivalBooks as $book)
+                    <div class="single-bestseller mb-25 col-md-2">
+                        <div class="bestseller-img">
+                            <a href="/frontend/view-book/{{$book->id}}">
+                                <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" class="primary" />
+                            </a>
+                        </div>
+                        <div class="bestseller-text text-center">
+                            <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4>
+                            {{-- <h5><i>Author: {{$book->author->name}}</a></i></h5> --}}
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-12 col-12">
-
-                </div>
+                                
+                    @empty
+                    <h4><a href="#">No Books Yet</a></h4>
+                @endforelse
             </div>
-        </div>
     </div>
     <!-- bestseller-area-end -->
     <!-- product-area-start -->
@@ -67,62 +54,24 @@
                 </div>
             </div>
             <!-- tab-area-start -->
-                <div class="tab-pane fade show active">
-                    <div class="tab-active owl-carousel">
-                        <!-- single-product-start -->
-                        <div class="product-wrapper">
-                            <div class="product-img">
-                                <div class="product-img">
-                                    @forelse($completedBooks as $book)
-                                    <a href="/view-book/{{$book->id}}">
-                                        <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" class="primary" />
-                                    </a>
-                                    {{-- <div class="quick-view">
-                                        <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
-                                            <i class="fa fa-search-plus"></i>
-                                        </a>
-                                    </div> --}}
-                                    {{-- <div class="product-flag">
-                                    </div> --}}
-                                </div>
-                                <div class="product-details text-center">
-                                    <div class="product-rating">
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <h4><a href="/view-book/{{$book->id}}">{{$book->title}}</a></h4>
-                                    <h5><i>{{$book->author->name}}</a></i></h5>
-                                    <div class="product-price">
-                                    </div>
-                                </div>
-                                {{-- <div class="product-link">
-                                    <div class="product-button">
-                                        <a href="#" title="Add to cart pt-5">
-                                            Add to library
-                                        </a>
-                                    </div> --}}
-                                    {{-- <div class="add-to-link">
-                                        <ul>
-                                            <li>
-                                                <a href="#" title="Details">
-                                                <i class="fa fa-external-link"></i>
-                                            </a>
-                                            </li>
-                                        </ul>
-                                    </div> --}}
-                                </div>
-                                @empty
-                                <h4><a href="#">No Books Yet</a></h4>
-                                @endforelse
-                            </div>
-                        <!-- single-product-end -->
+            <div class="row">
+                @forelse($completedBooks as $book)
+                    <div class="single-bestseller mb-25 col-md-2">
+                        <div class="bestseller-img">
+                            <a href="/frontend/view-book/{{$book->id}}">
+                                <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" class="primary" />
+                            </a>
+                        </div>
+                        <div class="bestseller-text text-center">
+                            <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4>
+                            {{-- <h5><i>Author: {{$book->author->name}}</a></i></h5> --}}
+                        </div>
                     </div>
-                </div>
+                                
+                    @empty
+                    <h4><a href="#">No Books Yet</a></h4>
+                @endforelse
+            </div>
             <!-- tab-area-end -->
         </div>
     </div>
@@ -137,10 +86,13 @@
                     </div>
                     <div class="product-active-2 owl-carousel">
                         <div class="product-total-2">
+                            @forelse($featuredBooks->take(3) as $book)
                             <div class="single-most-product bd mb-18">
-                                @forelse($featuredBooks as $book)
                                 <div class="most-product-img">
-                                    <a href="/view-book/{{$book->id}}"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
+                                    <a href="/frontend/view-book/{{$book->id}}">
+                                        <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" />
+                                    </a>
+                                    {{-- <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4> --}}
                                 </div>
                                 <div class="most-product-content">
                                     <div class="product-rating">
@@ -152,22 +104,18 @@
                                             <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         </ul>
                                     </div>
-                                    <h4><a href="/view-book/{{$book->id}}">{{$book->title}}</a></h4>
-                                    <h5><i>{{$book->author->name}}</i></h5>
-
+                                    <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4>
                                     {{-- <div class="product-price">
                                         <ul>
-                                            <li>{{$book->author->name}}</li>
+                                            <li>$30.00</li>
                                             <li class="old-price">$33.00</li>
                                         </ul>
                                     </div> --}}
-                                    @empty
-                                <h5><i>No Books yet</i></h5>
-                                @endforelse
                                 </div>
-                                
                             </div>
-                            
+                            @empty
+                                <h5><i>No Books yet</i></h5>
+                            @endforelse 
                         </div>
                     </div>
                 </div>
@@ -177,10 +125,13 @@
                     </div>
                     <div class="product-active-2 owl-carousel">
                         <div class="product-total-2">
+                            @forelse($newArrivalBooks->take(3) as $book)
                             <div class="single-most-product bd mb-18">
                                 <div class="most-product-img">
-                                    @forelse($newArrivalBooks as $book)
-                                    <a href="/view-book/{{$book->id}}"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
+                                    <a href="/frontend/view-book/{{$book->id}}">
+                                        <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" />
+                                    </a>
+                                    {{-- <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4> --}}
                                 </div>
                                 <div class="most-product-content">
                                     <div class="product-rating">
@@ -192,22 +143,18 @@
                                             <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         </ul>
                                     </div>
-                                    <h4><a href="/view-book/{{$book->id}}">{{$book->title}}</a></h4>
-                                    <h5><i>{{$book->author->name}}</i></h5>
-
+                                    <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4>
                                     {{-- <div class="product-price">
                                         <ul>
                                             <li>$30.00</li>
                                             <li class="old-price">$33.00</li>
                                         </ul>
                                     </div> --}}
-                                    @empty
-                                <h5><i>No Books yet</i></h5>
-                                @endforelse
                                 </div>
-                                
                             </div>
-                            
+                            @empty
+                                <h5><i>No Books yet</i></h5>
+                            @endforelse 
                         </div>
                     </div>
                 </div>
@@ -217,10 +164,13 @@
                     </div>
                     <div class="product-active-2 owl-carousel">
                         <div class="product-total-2">
+                            @forelse($completedBooks->take(3) as $book)
                             <div class="single-most-product bd mb-18">
                                 <div class="most-product-img">
-                                    @forelse($completedBooks as $book)
-                                    <a href="/view-book/{{$book->id}}"><img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" /></a>
+                                    <a href="/frontend/view-book/{{$book->id}}">
+                                        <img src="{{($book->image) ? asset('files') .'/'.$book->image : asset('images/no-image.png') }}" alt="book" />
+                                    </a>
+                                    {{-- <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4> --}}
                                 </div>
                                 <div class="most-product-content">
                                     <div class="product-rating">
@@ -232,22 +182,18 @@
                                             <li><a href="#"><i class="fa fa-star"></i></a></li>
                                         </ul>
                                     </div>
-                                    <h4><a href="/view-book/{{$book->id}}">{{$book->title}}</a></h4>
-                                    <h5><i>{{$book->author->name}}</i></h5>
-
+                                    <h4><a href="/frontend/view-book/{{$book->id}}">{{$book->title}}</a></h4>
                                     {{-- <div class="product-price">
                                         <ul>
                                             <li>$30.00</li>
                                             <li class="old-price">$33.00</li>
                                         </ul>
                                     </div> --}}
-                                    @empty
-                                <h5><i>No Books yet</i></h5>
-                                @endforelse
                                 </div>
-                                
                             </div>
-                            
+                            @empty
+                                <h5><i>No Books yet</i></h5>
+                            @endforelse 
                         </div>
                     </div>
                 </div>

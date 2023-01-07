@@ -22,7 +22,7 @@
                                 <p>Posted by:
                                     <a href="#"><span>{{$book->author->name}}</span></a>
                                 </p>
-                                <span>{{$book->published_at}}</span>
+                                <span>{{date('d-m-Y', strtotime($book->published_at))}}</span>
                             </div>
                         </div>
                         <div class="author-right">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="blog-single-content">
                             <p>{{$chapter->title}}</p>
-                            <blockquote class="blockstyle">{{$chapter->chapter_body}}</blockquote>
+                            <blockquote class="blockstyle">{!!$chapter->chapter_body!!}</blockquote>
                             {{-- <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim. laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim.</p> --}}
                             {{-- <p>dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim. laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim.</p> --}}
                         </div>

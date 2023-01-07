@@ -37,6 +37,7 @@ class BlogController extends Controller
                                 ->orderBy('created_at', 'desc')
                                 ->simplePaginate($this->limit);
 
+                                // return $featuredBooks;
         return view('frontend.home.index', [
             'featuredBooks' => $featuredBooks,
             'newArrivalBooks' => $newArrivalBooks,

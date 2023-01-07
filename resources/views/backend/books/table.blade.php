@@ -15,10 +15,13 @@
           @foreach ($books as $book)
 
 
-            <tr onclick="viewBook({{$book->id}})">
+            <tr>
                 <td>
                         <a href="/book/{{$book->id}}" class="btn btn-xs btn-default">
                             <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="/view-book/{{$book->id}}" class="btn btn-xs btn-default">
+                            <i class="fa fa-eye"></i>
                         </a>
                         <form method="POST" action="/book/{{$book->id}}">
                             @csrf
